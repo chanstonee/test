@@ -258,7 +258,7 @@
     .card > h2,
     .guide-title {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 9px;
       margin: 0 0 10px;
       color: var(--ink);
@@ -639,14 +639,14 @@
       font-weight: 900;
       line-height: 1.28;
       background: var(--surface);
-      border: 1.5px solid var(--line-strong);
-      box-shadow: 0 2px 0 rgba(21, 58, 91, .1);
+      border: 1px solid var(--line-strong);
+      box-shadow: none;
     }
     .sms-tone-option.is-active {
       color: var(--surface);
       background: var(--primary);
       border-color: var(--primary);
-      box-shadow: 0 2px 0 rgba(21, 58, 91, .24);
+      box-shadow: none;
     }
     .sms-refresh { min-height: 48px; padding: 10px 14px; font-size: .94rem; }
     .sms-tone-name { display: none; }
@@ -999,20 +999,20 @@
         <p class="sub">처리기관을 고르면 재산권 침해 행위 중단 및 조속 처리를 요청하는 제목과 본문 초안이 만들어집니다.</p>
 
         <div class="field">
-          <div id="agencyLabel" class="field-title">① 처리기관 선택</div>
+          <div id="agencyLabel" class="field-title">1. 처리기관 선택</div>
           <input type="hidden" id="agency" value="과천시청">
           <div id="agencyGrid" class="agency-grid" role="listbox" aria-labelledby="agencyLabel"></div>
           <p id="status" class="status" role="status" aria-live="polite"></p>
         </div>
 
-        <div class="result-label"><label for="titleOutput">생성된 제목</label></div>
+        <div class="result-label"><label for="titleOutput">2. 생성된 제목</label></div>
         <textarea id="titleOutput" class="result-box" readonly></textarea>
         <div class="result-action">
           <button type="button" id="copyTitle">제목 복사</button>
         </div>
         <p id="titleStatus" class="copy-status" role="status" aria-live="polite"></p>
 
-        <div class="result-label"><label for="bodyOutput">생성된 본문</label></div>
+        <div class="result-label"><label for="bodyOutput">3. 생성된 본문</label></div>
         <div class="body-box">
           <textarea id="bodyOutput" class="result-box body" readonly></textarea>
           <button type="button" id="toggleBody" class="body-toggle" aria-expanded="false">더보기</button>
