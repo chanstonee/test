@@ -120,6 +120,10 @@
     }
     .icon-heading {
       gap: 8px;
+      align-items: center;
+    }
+    .card > h2.icon-heading {
+      align-items: center;
     }
 
     .guide-title .icon-check {
@@ -135,9 +139,11 @@
 
     .hero {
       margin: 0 0 16px;
-      padding: 24px 18px 18px;
+      position: relative;
+      overflow: hidden;
+      padding: 20px 18px 18px;
       color: #ffffff;
-      background: var(--primary);
+      background: #12385d;
       border: 1px solid rgba(255,255,255,.18);
       border-radius: var(--radius);
       box-shadow: 0 10px 24px rgba(13, 41, 67, .16);
@@ -148,33 +154,76 @@
     .hero::after {
       content: none;
     }
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 18px;
+    }
+    .city-mark {
+      display: inline-flex;
+      align-items: center;
+      width: 94px;
+    }
+    .city-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
     .hero .eyebrow {
-      margin: 0 0 10px;
-      padding: 5px 10px;
-      width: fit-content;
-      color: #dcecff;
-      font-size: .88rem;
+      margin: 0;
+      padding: 5px 9px;
+      color: #e5f1ff;
+      font-size: .7rem;
       font-weight: 800;
       line-height: 1.35;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(203, 224, 244, .35);
       border-radius: 999px;
+    }
+    .hero-main {
+      position: relative;
+      z-index: 1;
+      min-height: 146px;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 68%;
     }
     .hero h1 {
       margin: 0;
-      font-size: clamp(1.72rem, 8vw, 2.1rem);
-      line-height: 1.24;
+      font-size: clamp(1.68rem, 7.4vw, 2.05rem);
+      line-height: 1.2;
       letter-spacing: 0;
       font-weight: 900;
       max-width: none;
     }
     .hero p {
-      margin: 12px 0 0;
+      margin: 13px 0 0;
       color: #f1f7ff;
-      font-size: 1rem;
-      line-height: 1.66;
+      font-size: .88rem;
+      line-height: 1.62;
+    }
+    .hero-art {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      width: 43%;
+      max-width: 174px;
+      pointer-events: none;
+    }
+    .hero-art img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
     .privacy-chip {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: flex-start;
       gap: 8px;
@@ -198,14 +247,6 @@
       line-height: 1.45;
       text-align: center;
     }
-    .hero .guide-toggle {
-      width: 100%;
-      margin-top: 14px;
-      color: var(--primary-dark);
-      background: #ffffff;
-      border: 1px solid rgba(255,255,255,.7);
-    }
-
     .card {
       margin-bottom: 18px;
       padding: 20px 16px;
@@ -236,10 +277,10 @@
 
     .subtabs {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
       align-items: stretch;
-      margin: 0 0 18px;
+      margin: 0;
       padding: 0;
       background: transparent;
       border: 0;
@@ -249,29 +290,33 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       min-height: 62px;
-      padding: 12px 8px;
+      padding: 12px 6px;
       color: var(--primary);
-      font-size: 1rem;
+      font-size: .9rem;
       font-weight: 900;
       line-height: 1.34;
       background: #ffffff;
       border: 1.5px solid var(--line-strong);
-      border-radius: var(--radius);
+      border-bottom: 0;
+      border-radius: var(--radius) var(--radius) 0 0;
       cursor: pointer;
-      box-shadow: 0 3px 0 rgba(21, 58, 91, .12);
+      box-shadow: none;
       transition: none;
     }
+    .subtab + .subtab { margin-left: -1.5px; }
     .subtab.is-active {
       color: #ffffff;
       background: var(--primary);
       border-color: var(--primary);
-      box-shadow: 0 3px 0 rgba(21, 58, 91, .28);
+      box-shadow: none;
+      position: relative;
+      z-index: 2;
     }
     .subtab .flat-icon {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       vertical-align: -5px;
     }
     .subtab .flat-icon.inbox::before { left: 4px; top: 4px; width: 14px; height: 14px; }
@@ -286,7 +331,12 @@
       outline-offset: 2px;
     }
     .subpanel { position: relative; z-index: 1; }
-    .subpanel > .card { margin-top: 0; }
+    .subpanel > .card,
+    #tab-guide > .card {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
 
     .field {
       display: grid;
@@ -368,7 +418,11 @@
       border: 0;
       border-radius: 999px;
     }
-    .agency-badge.rec { background: var(--seal); }
+    .agency-badge.rec {
+      color: var(--primary);
+      background: #ffffff;
+      border: 1px solid rgba(18, 56, 93, .16);
+    }
     .agency-name { font-size: 1rem; font-weight: 650; line-height: 1.3; }
     .agency-card-note { color: var(--muted); font-size: .9rem; font-weight: 700; line-height: 1.42; }
     #agencyGrid .agency-card-note { display: none; }
@@ -497,58 +551,104 @@
 
     .portal-box {
       display: grid;
-      gap: 0;
+      grid-template-columns: 64px 1fr;
+      align-items: center;
+      gap: 12px 14px;
       margin-top: 18px;
       padding: 18px 16px;
-      background: var(--accent-soft);
-      border: 1px solid #bdd7d6;
-      border-radius: var(--radius);
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      border-radius: 14px;
       box-shadow: none;
     }
+    .portal-visual {
+      display: block;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+    .portal-copy {
+      min-width: 0;
+    }
     .portal-title {
-      margin: 0 0 8px;
-      color: var(--ink);
-      font-size: 1.08rem;
-      font-weight: 650;
-      line-height: 1.38;
+      margin: 0 0 3px;
+      color: var(--primary);
+      font-size: 1.18rem;
+      font-weight: 900;
+      line-height: 1.3;
       letter-spacing: 0;
     }
     .portal-box p {
-      margin: 0 0 22px;
+      margin: 0;
       color: var(--muted);
-      font-size: .95rem;
+      font-size: .92rem;
       font-weight: 500;
-      line-height: 1.56;
+      line-height: 1.42;
     }
-    .portal-box .link-button { margin-top: 2px; }
+    .portal-box .link-button {
+      grid-column: 1 / -1;
+      min-height: 54px;
+      margin-top: 2px;
+      color: #ffffff;
+      font-size: 1.02rem;
+      font-weight: 900;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .portal-link-arrow {
+      width: 22px;
+      height: 22px;
+    }
     .portal-standalone { margin: 0 0 22px; }
-    .guide-toggle { min-height: 54px; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); }
+    .guide-toggle { min-height: 62px; }
 
     .sms-group { margin-top: 20px; }
     .sms-group-title {
       display: flex;
       align-items: center;
-      gap: 8px;
       margin-bottom: 12px;
-      padding: 9px 10px;
+      padding: 0;
       color: var(--ink);
       font-weight: 650;
       font-size: .98rem;
       line-height: 1.42;
-      background: var(--accent-soft);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
     }
     .sms-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
     .sms-head .tone { margin: 0; color: var(--muted); font-size: .95rem; }
-    .sms-tone-field { grid-template-columns: 1fr auto; align-items: center; column-gap: 12px; }
+    .sms-tone-field { grid-template-columns: 1fr; align-items: stretch; gap: 12px; }
     .sms-tone-field .field-title { align-self: center; }
-    .sms-tone-row { display: contents; }
+    .sms-tone-row,
+    .sms-tone-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .sms-tone-option {
+      min-height: 48px;
+      padding: 10px 6px;
+      color: var(--primary);
+      font-size: .86rem;
+      font-weight: 900;
+      line-height: 1.28;
+      background: var(--surface);
+      border: 1.5px solid var(--line-strong);
+      box-shadow: 0 2px 0 rgba(21, 58, 91, .1);
+    }
+    .sms-tone-option.is-active {
+      color: var(--surface);
+      background: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 2px 0 rgba(21, 58, 91, .24);
+    }
     .sms-refresh { min-height: 48px; padding: 10px 14px; font-size: .94rem; }
     .sms-tone-name { display: none; }
     .sms-two,
     .sms-row { display: grid; grid-template-columns: 1fr; gap: 12px; }
     .sms-two { margin-top: 16px; }
+    .actions.sms-row { margin-top: 14px; }
     .actions.sms-row .link-button {
       color: var(--ink);
       background: var(--surface);
@@ -556,6 +656,12 @@
       box-shadow: none;
     }
     .actions.sms-row .link-button .flat-icon { color: var(--ink); }
+    .send-icon {
+      display: block;
+      width: 21px;
+      height: 21px;
+      object-fit: contain;
+    }
     .sms-preview {
       margin: 0;
       padding: 14px 13px;
@@ -582,9 +688,9 @@
       color: var(--muted);
       font-size: .94rem;
       line-height: 1.62;
-      background: var(--seal-soft);
-      border: 1px solid #e8c5bd;
-      border-radius: var(--radius);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
     }
     .sms-note .flat-icon {
       width: 20px;
@@ -660,6 +766,24 @@
     .steps.alt .step-no { background: var(--accent); }
     .steps b { display: inline; color: var(--ink); font-size: .98rem; font-weight: 650; line-height: 1.52; }
     .steps p { margin: 6px 0 0; color: var(--muted); font-size: .94rem; line-height: 1.55; }
+    .guide-shot {
+      margin: 12px 0 0;
+    }
+    .guide-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 8px 18px rgba(23, 32, 51, .08);
+    }
+    .guide-shot figcaption {
+      margin-top: 7px;
+      color: var(--muted-soft);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
     .kbd {
       display: inline-block;
       padding: 1px 7px;
@@ -714,9 +838,9 @@
       margin-top: 12px;
       padding: 16px 14px;
       color: var(--muted);
-      background: #f7f8f4;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
       box-shadow: none;
     }
     .caution h2 { margin: 0 0 10px; color: var(--ink); font-size: 1rem; line-height: 1.4; font-weight: 650; }
@@ -732,13 +856,32 @@
       .actions.sms-row,
       .sms-two.sms-row { grid-template-columns: 1fr 1fr; }
       .tip { grid-template-columns: auto 1fr; }
+      .portal-box {
+        grid-template-columns: 82px 1fr auto;
+        gap: 18px;
+        padding: 22px;
+      }
+      .portal-visual {
+        width: 82px;
+        height: 82px;
+      }
+      .portal-title { font-size: 1.34rem; }
+      .portal-box p { font-size: 1rem; }
+      .portal-box .link-button {
+        grid-column: auto;
+        min-width: 132px;
+        margin-top: 0;
+      }
     }
 
     @media (max-width: 374px) {
       html { font-size: 17px; }
       .page { padding-left: 12px; padding-right: 12px; }
-      .subtabs { gap: 4px; }
-      .subtab { padding-left: 6px; padding-right: 6px; }
+      .subtab { padding-left: 4px; padding-right: 4px; font-size: .82rem; }
+      .subtab .uploaded-icon { width: 17px; height: 17px; }
+      .sms-tone-row,
+      .sms-tone-options { gap: 5px; }
+      .sms-tone-option { padding-left: 4px; padding-right: 4px; font-size: .78rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -755,9 +898,19 @@
   <main class="page">
     <!-- 히어로 -->
     <header class="hero">
-      <p class="eyebrow">과천 지역 주민 민원 작성 지원</p>
-      <h1>재산권 침해 행위를<br>막아주십시오</h1>
-      <p>건축허가 절차가 법에서 정한 기준에 따라 공정·조속하게 처리되도록 민원을 작성해보세요.</p>
+      <div class="hero-topline">
+        <span class="city-mark"><img src="assets/과천시로고.svg" alt="과천시"></span>
+        <p class="eyebrow">과천 지역 주민 민원 작성 지원</p>
+      </div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <h1>재산권 침해 행위를<br>막아주십시오</h1>
+          <p>건축허가 절차가 법에서 정한 기준에 따라 공정·조속하게 처리되도록 민원을 작성해보세요.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <img src="assets/hero-banner-icon.png" alt="">
+        </div>
+      </div>
       <span class="privacy-chip"><svg class="uploaded-icon icon-alert" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 
 <path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -766,28 +919,40 @@
 
 
 </svg><span>유의사항: 작성된 내용은 자동 접수되지 않습니다</span></span>
-      <button type="button" id="guideToggle" class="guide-toggle" aria-expanded="false"><span>처음이신가요?</span></button>
     </header>
+
+    <div class="subtabs" role="tablist">
+      <button class="subtab is-active" data-sub="minwon" role="tab" aria-selected="true"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<path d="M3.75 9V3C3.75 2.17157 4.42157 1.5 5.25 1.5H12.75C13.5784 1.5 14.25 2.17157 14.25 3V9" stroke="currentColor" stroke-width="1.5"/>
+<path d="M7.125 7.5H10.875M7.125 4.5H10.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.25 5.25L16.2803 7.28033C16.4209 7.42098 16.5 7.61175 16.5 7.81065V15C16.5 15.8284 15.8284 16.5 15 16.5H3C2.17157 16.5 1.5 15.8284 1.5 15V7.81065C1.5 7.61175 1.57902 7.42098 1.71967 7.28033L3.75 5.25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M16.5 7.5L9.6708 10.9146C9.24855 11.1257 8.75145 11.1257 8.3292 10.9146L1.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+
+
+</svg><span>국민신문고 접수</span></button>
+      <button class="subtab" data-sub="sms" role="tab" aria-selected="false"><svg class="uploaded-icon icon-comment" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.5 7.875C1.5 4.125 4.5 2.25 9 2.25C13.5 2.25 16.5 4.125 16.5 7.875C16.5 11.625 13.5 13.5 9 13.5V15.75C9 15.75 1.5 13.5 1.5 7.875Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 6.375H12M6 9.375H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>항의문자 발송</span></button>
+      <button type="button" id="guideToggle" class="subtab guide-toggle" data-sub="guide" role="tab" aria-selected="false" aria-expanded="false"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
+<path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>처음이신가요</span></button>
+    </div>
 
     <!-- ============ 탭 2: 처음이신가요? (안내) ============ -->
     <section id="tab-guide" class="tabpanel" role="tabpanel" hidden>
       <section class="card guide">
         <h2 class="guide-title"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_11_28)">
 <path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
 <path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_11_28">
-<rect fill="white"/>
-</clipPath>
-</defs>
 </svg><span>민원 접수 방법 &amp; 꿀팁</span></h2>
         <p class="guide-lead"><span id="guidePortalName">국민신문고</span>가 처음이신 분을 위한 단계별 안내입니다. 아래 순서대로만 하시면 됩니다.</p>
 
         <div class="guide-sub"><span><span id="guideAgencyHeading">과천시청</span> 민원 접수 순서</span></div>
         <ol class="steps">
-          <li><span class="step-no">1</span><div><b id="guideLoginTitle">국민신문고 회원가입 및 로그인</b><p id="guideLoginDesc">본인인증(카카오·PASS 등)이 필요합니다.</p></div></li>
+          <li><span class="step-no">1</span><div><b id="guideLoginTitle">국민신문고 회원가입 및 로그인</b><p id="guideLoginDesc">본인인증(카카오·PASS 등)이 필요합니다.</p><figure class="guide-shot"><img src="assets/epeople-auth-guide.png" alt="국민신문고 간편인증 입력 화면 예시" loading="lazy"><figcaption>간편인증 화면 예시</figcaption></figure></div></li>
           <li><span class="step-no">2</span><div><b>‘민원 접수 시작하기’에서 <span id="guideAgencyName">과천시청</span> 선택 후 생성된 제목·본문 확인</b><p id="guideAgencyFocus">기관을 바꾸면 문구가 자동으로 그 기관에 맞게 바뀝니다.</p></div></li>
           <li><span class="step-no">3</span><div><b><span class="kbd">제목 복사</span>·<span class="kbd">본문 복사</span>로 내용 복사</b><p>생성된 문구는 참고용이므로 제출 전에 직접 읽고 사실관계를 확인해 주세요.</p></div></li>
           <li><span class="step-no">4</span><div><b><span id="guidePortalStep">국민신문고</span> → 일반민원 → 수신기관에 기관명 입력 후 붙여넣기</b><p>수신기관 검색창에 <span id="guideAgencyName2">과천시청</span>을 넣고, 제목·본문을 붙여넣습니다.</p></div></li>
@@ -814,22 +979,6 @@
 
     <!-- ============ 탭 1: 민원 접수 시작하기 ============ -->
     <section id="tab-apply" class="tabpanel" role="tabpanel" data-mode="minwon">
-      <div class="subtabs" role="tablist">
-        <button class="subtab is-active" data-sub="minwon" role="tab" aria-selected="true"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-<path d="M3.75 9V3C3.75 2.17157 4.42157 1.5 5.25 1.5H12.75C13.5784 1.5 14.25 2.17157 14.25 3V9" stroke="currentColor" stroke-width="1.5"/>
-<path d="M7.125 7.5H10.875M7.125 4.5H10.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 5.25L16.2803 7.28033C16.4209 7.42098 16.5 7.61175 16.5 7.81065V15C16.5 15.8284 15.8284 16.5 15 16.5H3C2.17157 16.5 1.5 15.8284 1.5 15V7.81065C1.5 7.61175 1.57902 7.42098 1.71967 7.28033L3.75 5.25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M16.5 7.5L9.6708 10.9146C9.24855 11.1257 8.75145 11.1257 8.3292 10.9146L1.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-
-
-</svg><span>국민신문고 접수</span></button>
-        <button class="subtab" data-sub="sms" role="tab" aria-selected="false"><svg class="uploaded-icon icon-comment" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.5 7.875C1.5 4.125 4.5 2.25 9 2.25C13.5 2.25 16.5 4.125 16.5 7.875C16.5 11.625 13.5 13.5 9 13.5V15.75C9 15.75 1.5 13.5 1.5 7.875Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6 6.375H12M6 9.375H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>항의문자 발송</span></button>
-      </div>
-
       <!-- 1) 국민신문고 하위 화면 -->
       <div id="sub-minwon" class="subpanel" role="tabpanel">
       <section id="sec-minwon" class="card">
@@ -871,11 +1020,14 @@
       </section>
 
       <section class="portal-box portal-standalone" aria-labelledby="portalTitle">
-        <h2 id="portalTitle" class="portal-title">국민신문고 바로가기</h2>
-        <p id="portalDesc">국민신문고로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.</p>
-        <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer"><svg class="uploaded-icon icon-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <img class="portal-visual" src="assets/국민신문고바로가기-아이콘.png" alt="" aria-hidden="true">
+        <div class="portal-copy">
+          <h2 id="portalTitle" class="portal-title">국민신문고</h2>
+          <p id="portalDesc">국민신문고로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.</p>
+        </div>
+        <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 바로가기"><span class="portal-link-text">바로가기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>국민신문고 바로가기</span></a>
+</svg></a>
       </section>
       </div><!-- /#sub-minwon -->
 
@@ -896,14 +1048,11 @@
         <div class="field sms-tone-field">
           <div class="field-title">② 문자 어조</div>
           <div class="sms-tone-row">
-            <button type="button" id="refreshSmsTone" class="sms-refresh">다시 생성하기</button>
-            <span id="smsToneName" class="sms-tone-name" hidden>균형 검토형</span>
+            <button type="button" class="sms-tone-option is-active" data-tone="검증 요청형" aria-pressed="true">검증 요청형</button>
+            <button type="button" class="sms-tone-option" data-tone="균형 검토형" aria-pressed="false">균형 검토형</button>
+            <button type="button" class="sms-tone-option" data-tone="차분한 요청형" aria-pressed="false">차분한 요청형</button>
+            <span id="smsToneName" class="sms-tone-name" hidden>검증 요청형</span>
           </div>
-        </div>
-
-        <div class="actions sms-row">
-          <a id="smsSend1" class="link-button secondary" href="#"><span class="flat-icon send" aria-hidden="true"></span><span>1차 전송</span></a>
-          <a id="smsSend2" class="link-button" href="#"><span class="flat-icon send" aria-hidden="true"></span><span>2차 전송</span></a>
         </div>
 
         <div class="sms-two sms-row">
@@ -915,6 +1064,11 @@
             <div class="sms-preview-title"><span>2차 본문 미리보기</span><span id="smsCount2" class="sms-count">0자</span></div>
             <p id="smsPreview2" class="sms-text"></p>
           </div>
+        </div>
+
+        <div class="actions sms-row">
+          <a id="smsSend1" class="link-button secondary" href="#"><img class="send-icon" src="assets/전송버튼-아이콘.svg" alt=""><span>1차 전송</span></a>
+          <a id="smsSend2" class="link-button" href="#"><img class="send-icon" src="assets/전송버튼-아이콘.svg" alt=""><span>2차 전송</span></a>
         </div>
 
         <p class="sms-note"><svg class="uploaded-icon icon-alert" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1292,10 +1446,10 @@
   const statusEl = $("status"), titleStatusEl = $("titleStatus"), bodyStatusEl = $("bodyStatus");
   const smsPreview1 = $("smsPreview1"), smsPreview2 = $("smsPreview2");
   const smsCount1 = $("smsCount1"), smsCount2 = $("smsCount2");
-  const rcptGroups = $("rcptGroups"), smsToneName = $("smsToneName"), refreshSmsTone = $("refreshSmsTone"), smsSend1 = $("smsSend1"), smsSend2 = $("smsSend2");
+  const rcptGroups = $("rcptGroups"), smsToneName = $("smsToneName"), smsSend1 = $("smsSend1"), smsSend2 = $("smsSend2");
   const portalLink = $("portalLink"), portalDesc = $("portalDesc"), portalTitle = $("portalTitle");
 
-  // 하위 탭 전환 (국민신문고 접수 / 항의문자 발송) — 화면 전체가 바뀜
+  // 하위 탭 전환 (국민신문고 접수 / 항의문자 발송 / 처음이신가요) — 화면 전체가 바뀜
   document.querySelectorAll(".subtab").forEach((sub) => {
     sub.addEventListener("click", () => {
       const target = sub.dataset.sub;
@@ -1304,10 +1458,12 @@
         s.classList.toggle("is-active", on);
         s.setAttribute("aria-selected", on ? "true" : "false");
       });
+      const isGuide = target === "guide";
+      $("tab-apply").hidden = isGuide;
+      $("tab-guide").hidden = !isGuide;
       $("sub-minwon").hidden = target !== "minwon";
       $("sub-sms").hidden = target !== "sms";
-      $("tab-apply").dataset.mode = target;
-      $("tab-guide").hidden = true;
+      $("tab-apply").dataset.mode = isGuide ? "" : target;
       updateGuideToggle();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -1329,7 +1485,8 @@
     agencyGrid.appendChild(btn);
   });
 
-  let smsToneIndex = getDailyToneIndex();
+  let smsToneIndex = SMS_TONES.findIndex((tone) => tone.name === "검증 요청형");
+  if (smsToneIndex < 0) smsToneIndex = 0;
   let bodyExpanded = false;
   function getDailyToneIndex() {
     const n = new Date();
@@ -1532,7 +1689,7 @@ ${n + 1}. ${purpose.request}
           `<span class="agency-card-note">${dashPhone(r.phone)}</span>` +
         `</button>`;
       }).join("");
-      wrap.innerHTML = `<div class="sms-group-title"><span class="flat-icon person" aria-hidden="true"></span><span>${group.title}</span></div><div class="agency-grid">${cards}</div>`;
+      wrap.innerHTML = `<div class="sms-group-title"><span>${group.title}</span></div><div class="agency-grid">${cards}</div>`;
       rcptGroups.appendChild(wrap);
     });
     rcptGroups.querySelectorAll(".agency-card").forEach((btn) => {
@@ -1546,7 +1703,20 @@ ${n + 1}. ${purpose.request}
 
   // ② 현재 어조 표시
   function updateToneName() {
-    smsToneName.textContent = getToneName();
+    const toneName = getToneName();
+    smsToneName.textContent = toneName;
+    document.querySelectorAll(".sms-tone-option").forEach((btn) => {
+      const on = btn.dataset.tone === toneName;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function setSmsTone(toneName) {
+    const nextIndex = SMS_TONES.findIndex((tone) => tone.name === toneName);
+    if (nextIndex < 0) return;
+    smsToneIndex = nextIndex;
+    renderSms();
   }
 
   // ③ 현재 생성된 민원 취지를 짧게 요약해 미리보기 + 전송 버튼 갱신
@@ -1563,11 +1733,13 @@ ${n + 1}. ${purpose.request}
 
   function refreshPortal() {
     const { agency } = getState();
-    const portalName = `${agency.portal.name} 바로가기`;
+    const portalName = agency.portal.name;
     portalTitle.textContent = portalName;
-    portalLink.textContent = portalName;
     portalLink.href = agency.portal.url;
-    portalDesc.textContent = `${agency.portal.name}(으)로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.`;
+    portalLink.setAttribute("aria-label", `${portalName} 바로가기`);
+    const portalLinkText = portalLink.querySelector(".portal-link-text");
+    if (portalLinkText) portalLinkText.textContent = "바로가기";
+    portalDesc.textContent = `${portalName}(으)로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.`;
   }
 
   function refreshGuide() {
@@ -1608,8 +1780,6 @@ ${n + 1}. ${purpose.request}
 
   function updateGuideToggle() {
     const isOpen = !$("tab-guide").hidden;
-    const label = isOpen ? "안내 접기" : "처음이신가요?";
-    guideToggle.innerHTML = `<span>${label}</span>`;
     guideToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   }
 
@@ -1667,16 +1837,8 @@ ${n + 1}. ${purpose.request}
     bodyExpanded = !bodyExpanded;
     updateBodyCollapse();
   });
-  guideToggle.addEventListener("click", () => {
-    const guide = $("tab-guide");
-    guide.hidden = !guide.hidden;
-    updateGuideToggle();
-    if (!guide.hidden) guide.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-  refreshSmsTone.addEventListener("click", () => {
-    smsToneIndex = (smsToneIndex + 1) % SMS_TONES.length;
-    renderSms();
-    setStatus(`${getToneName()} 어조로 다시 생성했습니다.`);
+  document.querySelectorAll(".sms-tone-option").forEach((btn) => {
+    btn.addEventListener("click", () => setSmsTone(btn.dataset.tone));
   });
   $("copyTitle").addEventListener("click", () => copyText(titleOutput.value, titleOutput, "제목", titleStatusEl));
   $("copyBody").addEventListener("click", () => {
