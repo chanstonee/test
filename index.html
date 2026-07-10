@@ -558,7 +558,7 @@
       padding: 18px 16px;
       background: var(--surface);
       border: 1px solid var(--primary);
-      border-radius: 14px;
+      border-radius: var(--radius);
       box-shadow: none;
     }
     .portal-visual {
@@ -589,11 +589,16 @@
       grid-column: 1 / -1;
       min-height: 54px;
       margin-top: 2px;
+      padding-left: 20px;
       color: #ffffff;
       font-size: 1.02rem;
       font-weight: 900;
       background: var(--primary);
       border-color: var(--primary);
+    }
+    .portal-link-text {
+      display: inline-block;
+      padding-left: 12px;
     }
     .portal-link-arrow {
       width: 22px;
@@ -997,6 +1002,7 @@
           <div id="agencyLabel" class="field-title">① 처리기관 선택</div>
           <input type="hidden" id="agency" value="과천시청">
           <div id="agencyGrid" class="agency-grid" role="listbox" aria-labelledby="agencyLabel"></div>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
         </div>
 
         <div class="result-label"><label for="titleOutput">생성된 제목</label></div>
@@ -1016,7 +1022,6 @@
         </div>
         <p id="bodyStatus" class="copy-status" role="status" aria-live="polite"></p>
 
-        <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
 
       <section class="portal-box portal-standalone" aria-labelledby="portalTitle">
