@@ -33,12 +33,19 @@
       --mono: "JetBrains Mono", "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       --radius: 8px;
       --tap: 58px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
     }
 
     * { box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
-      font-size: 17px;
+      font-size: 16px;
       -webkit-text-size-adjust: 100%;
     }
     body {
@@ -132,21 +139,40 @@
     }
 
     .page {
-      width: min(640px, 100%);
+      width: min(720px, 100%);
       margin: 0 auto;
-      padding: 14px 12px 56px;
+      padding: 0 0 56px;
+      background: var(--surface);
+    }
+    .site-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      padding: 16px 20px;
+      color: #2d2d30;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.3;
+      text-align: center;
+      background: var(--surface);
     }
 
     .hero {
-      margin: 0 0 16px;
+      margin: 0;
       position: relative;
       overflow: hidden;
-      padding: 20px 18px 18px;
+      min-height: 520px;
+      padding: 30px 32px;
       color: #ffffff;
-      background: #12385d;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 24px rgba(13, 41, 67, .16);
+      background-color: rgb(16, 47, 85);
+      background-image: url("assets/Main-hero-bg.png?v=2");
+      background-position: center bottom;
+      background-size: auto 88%;
+      background-repeat: no-repeat;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
     .hero::before {
       content: none;
@@ -154,15 +180,7 @@
     .hero::after {
       content: none;
     }
-    .hero-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-      margin-bottom: 18px;
-    }
+    .hero-topline { display: none; }
     .city-mark {
       display: inline-flex;
       align-items: center;
@@ -184,60 +202,28 @@
       border: 1px solid rgba(203, 224, 244, .35);
       border-radius: 999px;
     }
-    .hero-main {
-      position: relative;
-      z-index: 1;
-      min-height: 146px;
-    }
+    .hero-main { position: relative; z-index: 1; min-height: 460px; }
     .hero-copy {
       position: relative;
       z-index: 2;
-      max-width: 68%;
+      max-width: 100%;
     }
     .hero h1 {
       margin: 0;
-      font-size: clamp(1.68rem, 7.4vw, 2.05rem);
-      line-height: 1.2;
-      letter-spacing: 0;
+      font-size: 30px;
+      line-height: 1.27;
+      letter-spacing: -.025em;
       font-weight: 900;
       max-width: none;
     }
     .hero p {
-      margin: 13px 0 0;
-      color: #f1f7ff;
-      font-size: .88rem;
-      line-height: 1.62;
+      margin: 17px 0 0;
+      max-width: 600px;
+      color: #d8e2ef;
+      font-size: 16px;
+      line-height: 1.56;
     }
-    .hero-art {
-      position: absolute;
-      right: 0;
-      bottom: 2px;
-      width: 43%;
-      max-width: 174px;
-      pointer-events: none;
-    }
-    .hero-art img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .privacy-chip {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      width: 100%;
-      margin-top: 16px;
-      padding: 8px 12px;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.45;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.26);
-      border-radius: var(--radius);
-    }
+    .privacy-chip { display: none; }
     .text-marker {
       flex: 0 0 auto;
       display: inline-block;
@@ -248,8 +234,8 @@
       text-align: center;
     }
     .card {
-      margin-bottom: 18px;
-      padding: 20px 16px;
+      margin-bottom: var(--space-4);
+      padding: 22px 18px;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -260,19 +246,19 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      margin: 0 0 10px;
+      margin: 0 0 var(--space-3);
       color: var(--ink);
-      font-size: 1.12rem;
+      font-size: 18px;
       line-height: 1.36;
       font-weight: 900;
       letter-spacing: 0;
     }
     .card > .sub,
     .guide-lead {
-      margin: 0 0 20px;
+      margin: 0 0 var(--space-5);
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.68;
+      font-size: 16px;
+      line-height: 1.6;
     }
 
     .subtabs {
@@ -280,47 +266,63 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 0;
       align-items: stretch;
+      position: sticky;
+      top: 0;
+      z-index: 50;
       margin: 0;
       padding: 0;
-      background: transparent;
+      background: #ffffff;
       border: 0;
+      border-bottom: 1px solid var(--line);
       border-radius: 0;
+      box-shadow: 0 4px 12px rgba(23, 32, 51, .06);
     }
     .subtab {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      min-height: 62px;
-      padding: 12px 6px;
-      color: var(--primary);
-      font-size: .9rem;
-      font-weight: 900;
-      line-height: 1.34;
+      gap: 3px;
+      min-height: 124px;
+      padding: 18px 6px 16px;
+      color: #333438;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.28;
       background: #ffffff;
-      border: 1px solid var(--line-strong);
-      border-bottom: 0;
-      border-radius: var(--radius) var(--radius) 0 0;
+      border: 0;
+      border-radius: 0;
       cursor: pointer;
       box-shadow: none;
       transition: none;
-    }
-    .subtab + .subtab { margin-left: -1px; }
-    .subtab.is-active {
-      color: #ffffff;
-      background: var(--primary);
-      border-color: var(--primary);
-      box-shadow: none;
       position: relative;
+    }
+    .subtab + .subtab { margin-left: 0; }
+    .subtab.is-active {
+      color: #1c1d20;
+      background: #ffffff;
+      border-color: transparent;
+      box-shadow: none;
       z-index: 2;
     }
-    .subtab .flat-icon {
-      width: 20px;
-      height: 20px;
-      vertical-align: -5px;
+    .subtab.is-active::after {
+      content: "";
+      position: absolute;
+      right: 20%;
+      bottom: 0;
+      left: 20%;
+      height: 3px;
+      background: #1c1d20;
     }
-    .subtab .flat-icon.inbox::before { left: 4px; top: 4px; width: 14px; height: 14px; }
-    .subtab .flat-icon.inbox::after { left: 7px; top: 9px; width: 8px; height: 5px; }
+    .subtab .flat-icon {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 4px;
+      color: #d9dde0;
+      vertical-align: 0;
+    }
+    .subtab .uploaded-icon { width: 34px; height: 34px; margin-bottom: 4px; color: #d9dde0; }
+    .subtab small { color: #4d4e52; font-size: 12px; font-weight: 500; line-height: 1.25; }
     .subtab:focus-visible,
     button:focus-visible,
     .link-button:focus-visible,
@@ -334,19 +336,19 @@
     .subpanel > .card,
     #tab-guide > .card {
       margin-top: 0;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
     }
 
     .field {
       display: grid;
       gap: 10px;
-      margin-bottom: 22px;
+      margin-bottom: var(--space-6);
     }
     .field-title,
     label {
       color: var(--ink);
-      font-size: .99rem;
+      font-size: 16px;
       font-weight: 650;
       line-height: 1.42;
     }
@@ -378,7 +380,7 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(54, 95, 98, .14);
     }
-    .hint { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.55; }
+    .hint { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 
     .agency-grid {
       display: grid;
@@ -411,7 +413,7 @@
       padding: 2px 7px;
       color: var(--surface);
       font-family: var(--mono);
-      font-size: .74rem;
+      font-size: 12px;
       font-weight: 500;
       line-height: 1.2;
       background: var(--accent);
@@ -423,10 +425,42 @@
       background: #ffffff;
       border: 1px solid rgba(18, 56, 93, .16);
     }
-    .agency-name { font-size: 1rem; font-weight: 650; line-height: 1.3; }
-    .agency-card-note { color: var(--muted); font-size: .9rem; font-weight: 400; line-height: 1.42; }
+    .agency-name { font-size: 16px; font-weight: 650; line-height: 1.3; }
+    .agency-card-note { color: var(--muted); font-size: 14px; font-weight: 400; line-height: 1.42; }
     #agencyGrid .agency-card-note { display: none; }
     .agency-card.is-selected .agency-card-note { color: #edf4fb; }
+    #rcptGroups .agency-grid { grid-template-columns: 1fr; }
+    #rcptGroups .sms-rcpt-card {
+      display: grid;
+      grid-template-columns: minmax(100px, .8fr) minmax(0, 1.2fr);
+      gap: var(--space-4);
+      align-items: center;
+      min-height: 94px;
+      padding: 16px 18px;
+    }
+    .sms-rcpt-role {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .sms-rcpt-copy {
+      display: grid;
+      gap: var(--space-1);
+      min-width: 0;
+      text-align: right;
+    }
+    .sms-rcpt-copy .agency-name {
+      font-size: 18px;
+      font-weight: 800;
+    }
+    #rcptGroups .sms-rcpt-copy .agency-card-note {
+      display: block;
+      color: var(--muted-soft);
+      font-size: 14px;
+    }
+    #rcptGroups .sms-rcpt-card.is-selected .sms-rcpt-role,
+    #rcptGroups .sms-rcpt-card.is-selected .agency-card-note { color: #edf4fb; }
 
     .actions,
     .result-action {
@@ -435,7 +469,13 @@
       gap: 10px;
     }
     .actions { margin-top: 10px; }
-    .result-action { margin: 12px 0 0; }
+    .result-action { margin: var(--space-3) 0 0; }
+    .copy-icon {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      filter: brightness(0) invert(1);
+    }
     button,
     .link-button {
       display: inline-flex;
@@ -445,7 +485,7 @@
       min-height: var(--tap);
       padding: 13px 15px;
       color: var(--surface);
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 650;
       line-height: 1.34;
       text-align: center;
@@ -468,14 +508,14 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      margin: 24px 0 8px;
+      margin: var(--space-6) 0 var(--space-2);
       font-weight: 650;
     }
     .result-label span {
       display: inline-flex;
       color: var(--muted-soft);
       font-family: var(--mono);
-      font-size: .82rem;
+      font-size: 14px;
       font-weight: 400;
       white-space: nowrap;
     }
@@ -487,7 +527,7 @@
       overflow-wrap: anywhere;
       background: var(--surface-soft);
       font-family: var(--mono);
-      font-size: .92rem;
+      font-size: 16px;
       line-height: 1.68;
     }
     .body-box {
@@ -517,7 +557,7 @@
       min-height: 48px;
       padding: 10px 12px;
       color: var(--primary-dark);
-      font-size: .95rem;
+      font-size: 16px;
       font-weight: 650;
       background: var(--surface);
       border: 0;
@@ -531,15 +571,54 @@
       margin: 10px 0 0;
       color: var(--accent);
       font-family: var(--mono);
-      font-size: .94rem;
+      font-size: 14px;
       font-weight: 500;
       line-height: 1.42;
     }
     .copy-status { margin-bottom: 20px; }
     .body-box + .result-action {
-      margin-top: 28px;
+      margin-top: var(--space-3);
     }
+    .card > .sub + .result-label { margin-top: 0; }
+    #sec-minwon > .card .field:last-child { margin-bottom: 0; }
+    #sec-minwon .portal-box { margin-top: var(--space-3); }
+    #sec-minwon > .card:first-of-type {
+      border: 0;
+      border-radius: 0;
+    }
+    #sec-sms {
+      border: 0;
+      border-radius: 0;
+    }
+    #agencyLabel,
+    #sec-minwon .minwon-step-title,
+    #sec-sms > .field > .field-title,
+    #sec-sms > h2.sms-compose-title {
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    #sec-sms > .field { margin-bottom: 32px; }
+    #sec-sms > h2.sms-compose-title {
+      text-wrap: wrap;
+      white-space: normal;
+    }
+    #sec-minwon > .card:first-of-type > h2:first-of-type {
+      justify-content: center;
+      text-align: center;
+    }
+    #sec-minwon .minwon-step-title { margin-top: 32px; text-wrap: wrap; }
+    #sec-minwon > .card:first-of-type > .field { margin-top: 30px; }
+    #sec-minwon .result-label label {
+      color: var(--muted-soft);
+      font-size: 14px;
+      font-weight: 400;
+    }
+    #copyTitle,
+    #copyBody { padding-right: 22px; }
     #bodyStatus.copy-status:empty,
+    #titleStatus.copy-status:empty,
     #status.status:empty {
       min-height: 0;
       margin: 0;
@@ -553,9 +632,9 @@
       display: grid;
       grid-template-columns: 64px 1fr;
       align-items: center;
-      gap: 12px 14px;
-      margin-top: 18px;
-      padding: 18px 16px;
+      gap: var(--space-3) 14px;
+      margin-top: var(--space-5);
+      padding: var(--space-5) var(--space-4);
       background: var(--surface);
       border: 1px solid var(--primary);
       border-radius: var(--radius);
@@ -573,7 +652,7 @@
     .portal-title {
       margin: 0 0 3px;
       color: var(--primary);
-      font-size: 1.18rem;
+      font-size: 20px;
       font-weight: 900;
       line-height: 1.3;
       letter-spacing: 0;
@@ -581,7 +660,7 @@
     .portal-box p {
       margin: 0;
       color: var(--muted);
-      font-size: .92rem;
+      font-size: 14px;
       font-weight: 500;
       line-height: 1.42;
     }
@@ -591,7 +670,7 @@
       margin-top: 2px;
       padding-left: 20px;
       color: #ffffff;
-      font-size: 1.02rem;
+      font-size: 16px;
       font-weight: 900;
       background: var(--primary);
       border-color: var(--primary);
@@ -608,34 +687,35 @@
     .guide-toggle { min-height: 62px; }
 
     .sms-group { margin-top: 20px; }
+    #rcptGroups .sms-group:first-child { margin-top: 0; }
     .sms-group-title {
       display: flex;
       align-items: center;
       margin-bottom: 12px;
       padding: 0;
-      color: var(--ink);
-      font-weight: 650;
-      font-size: .98rem;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 16px;
       line-height: 1.42;
       background: transparent;
       border: 0;
       border-radius: 0;
     }
     .sms-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .sms-head .tone { margin: 0; color: var(--muted); font-size: .95rem; }
+    .sms-head .tone { margin: 0; color: var(--muted); font-size: 16px; }
     .sms-tone-field { grid-template-columns: 1fr; align-items: stretch; gap: 12px; }
     .sms-tone-field .field-title { align-self: center; }
     .sms-tone-row,
     .sms-tone-options {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
     .sms-tone-option {
       min-height: 48px;
       padding: 10px 6px;
       color: var(--primary);
-      font-size: .86rem;
+      font-size: 14px;
       font-weight: 900;
       line-height: 1.28;
       background: var(--surface);
@@ -648,7 +728,7 @@
       border-color: var(--primary);
       box-shadow: none;
     }
-    .sms-refresh { min-height: 48px; padding: 10px 14px; font-size: .94rem; }
+    .sms-refresh { min-height: 48px; padding: 10px 14px; font-size: 14px; }
     .sms-tone-name { display: none; }
     .sms-two,
     .sms-row { display: grid; grid-template-columns: 1fr; gap: 12px; }
@@ -669,6 +749,13 @@
       width: 21px;
       height: 21px;
       object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    #smsSend1,
+    #smsSend2 {
+      color: #ffffff;
+      background: rgb(21, 58, 91);
+      border-color: rgb(21, 58, 91);
     }
     .sms-preview {
       margin: 0;
@@ -678,15 +765,23 @@
       border-radius: var(--radius);
       box-shadow: none;
     }
-    .sms-preview-title { display: flex; justify-content: space-between; gap: 8px; color: var(--ink); font-weight: 650; font-size: .96rem; line-height: 1.4; }
-    .sms-count { color: var(--muted-soft); font-family: var(--mono); font-size: .8rem; font-weight: 400; white-space: nowrap; }
-    .sms-text { margin: 10px 0 0; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--mono); font-size: .9rem; line-height: 1.62; }
+    .sms-preview-title { display: flex; justify-content: space-between; gap: 8px; color: var(--ink); font-weight: 400; font-size: 14px; line-height: 1.4; }
+    .sms-preview-title > span:first-child {
+      color: var(--muted-soft);
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .sms-count { color: var(--muted-soft); font-family: var(--mono); font-size: 14px; font-weight: 400; white-space: nowrap; }
+    .sms-text { margin: 10px 0 0; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--mono); font-size: 16px; line-height: 1.6; }
+    .sms-message-list { display: grid; gap: var(--space-6); }
+    .sms-message-block { display: grid; gap: var(--space-3); }
+    .sms-message-block .actions { margin-top: 0; }
     .sms-recipients { display: grid; gap: 12px; margin-top: 8px; }
     .sms-rcpt { padding: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: none; }
-    .sms-rcpt-name { margin-bottom: 10px; color: var(--ink); font-size: .98rem; font-weight: 650; line-height: 1.4; }
+    .sms-rcpt-name { margin-bottom: 10px; color: var(--ink); font-size: 16px; font-weight: 650; line-height: 1.4; }
     .sms-rcpt-btns { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .sms-rcpt-btns .link-button { min-height: 52px; }
-    .sms-empty { margin: 0; padding: 14px; color: var(--muted); font-size: .98rem; line-height: 1.58; background: var(--surface-soft); border: 1px solid var(--line); border-radius: var(--radius); }
+    .sms-empty { margin: 0; padding: 14px; color: var(--muted); font-size: 16px; line-height: 1.58; background: var(--surface-soft); border: 1px solid var(--line); border-radius: var(--radius); }
     .sms-note {
       display: flex;
       align-items: flex-start;
@@ -694,7 +789,7 @@
       margin: 18px 0 0;
       padding: 12px;
       color: var(--muted);
-      font-size: .94rem;
+      font-size: 16px;
       line-height: 1.62;
       background: transparent;
       border: 0;
@@ -711,6 +806,14 @@
       border-top: 1px solid var(--line);
       background: var(--surface);
     }
+    #tab-guide > .guide.guide-walkthrough {
+      padding: 28px 16px;
+      background: #fff;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
     .guide-title {
       color: var(--ink);
       margin-bottom: 10px;
@@ -720,7 +823,7 @@
       color: var(--ink);
     }
     .guide-lead {
-      margin-bottom: 26px;
+      margin-bottom: var(--space-6);
       color: var(--muted);
     }
     .guide-sub {
@@ -730,7 +833,7 @@
       margin: 26px 0 12px;
       padding: 9px 10px;
       color: var(--ink);
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 650;
       line-height: 1.42;
       background: var(--surface-soft);
@@ -765,15 +868,15 @@
       color: var(--surface);
       font-family: var(--mono);
       font-weight: 500;
-      font-size: .75rem;
+      font-size: 12px;
       line-height: 1;
       background: var(--primary);
       border: 0;
       border-radius: 999px;
     }
     .steps.alt .step-no { background: var(--accent); }
-    .steps b { display: inline; color: var(--ink); font-size: .98rem; font-weight: 650; line-height: 1.52; }
-    .steps p { margin: 6px 0 0; color: var(--muted); font-size: .94rem; line-height: 1.55; }
+    .steps b { display: inline; color: var(--ink); font-size: 16px; font-weight: 650; line-height: 1.52; }
+    .steps p { margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
     .guide-shot {
       margin: 12px 0 0;
     }
@@ -789,7 +892,7 @@
     .guide-shot figcaption {
       margin-top: 7px;
       color: var(--muted-soft);
-      font-size: .82rem;
+      font-size: 14px;
       line-height: 1.45;
     }
     .kbd {
@@ -798,7 +901,7 @@
       color: var(--primary-dark);
       font-family: var(--mono);
       font-weight: 500;
-      font-size: .9rem;
+      font-size: 14px;
       background: var(--primary-soft);
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -806,12 +909,12 @@
     .tips-title {
       margin: 28px 0 12px;
       color: var(--ink);
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 650;
       line-height: 1.42;
       letter-spacing: 0;
     }
-    .tips { display: grid; gap: 12px; margin-top: 0; }
+    .tips { display: grid; gap: var(--space-3); margin-top: 0; }
     .tip {
       display: grid;
       grid-template-columns: 24px 1fr;
@@ -823,7 +926,7 @@
       border: 1px solid #ead8a8;
       border-left: 4px solid var(--notice);
       border-radius: var(--radius);
-      font-size: .96rem;
+      font-size: 16px;
       line-height: 1.6;
     }
     .tip-badge {
@@ -834,12 +937,143 @@
       padding: 0;
       color: var(--surface);
       font-family: var(--mono);
-      font-size: .8rem;
+      font-size: 14px;
       font-weight: 500;
       background: var(--notice);
       border: 0;
       border-radius: 999px;
       white-space: nowrap;
+    }
+
+    .card > h2.walkthrough-title {
+      justify-content: center;
+      margin: 0 0 24px;
+      color: var(--ink);
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.35;
+      text-align: center;
+    }
+    #sec-minwon > .card:first-of-type > h2:first-of-type,
+    #sec-sms > h2:first-of-type {
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.35;
+      text-align: center;
+    }
+    #tab-guide > .guide.guide-walkthrough,
+    #sec-minwon > .card:first-of-type,
+    #sec-sms {
+      padding: 28px 18px;
+      border: 0;
+    }
+    .walkthrough-steps {
+      display: grid;
+      gap: var(--space-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .walkthrough-step {
+      padding: 18px 16px 0;
+      overflow: hidden;
+      background: #f7f7f7;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+    }
+    .walkthrough-step-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .walkthrough-step-no {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      background: rgb(21, 58, 91);
+      border-radius: 50%;
+    }
+    .walkthrough-logo {
+      width: 74px;
+      height: auto;
+    }
+    .walkthrough-brand-group {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .walkthrough-tool-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      color: #2468a8;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.2;
+      background: #edf4ff;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .walkthrough-step h3 {
+      margin: 10px 0 4px;
+      color: #38383b;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.38;
+    }
+    .walkthrough-step h3 strong { color: #2468df; }
+    .walkthrough-step:nth-child(2) h3 strong,
+    .walkthrough-step:nth-child(3) h3 strong,
+    .walkthrough-step:nth-child(4) h3 strong,
+    .walkthrough-step:nth-child(5) h3 strong,
+    .walkthrough-step:nth-child(7) h3 strong { color: var(--ink); }
+    .walkthrough-step p {
+      margin: 0;
+      color: #77797e;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .walkthrough-step .walkthrough-alert {
+      margin-top: 10px;
+      color: #ec5272;
+      font-size: 14px;
+    }
+    .walkthrough-shot {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      margin: 16px auto 0;
+    }
+    .walkthrough-image-labels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      color: #2468df;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+    .walkthrough-image-labels + .walkthrough-shot { margin-top: var(--space-2); }
+    .walkthrough-step:nth-child(2) > .walkthrough-shot {
+      justify-self: center;
+      width: calc(100% + 44px);
+      max-width: none;
+      margin-right: -44px;
+      margin-left: 0;
+      object-position: center;
     }
 
     .caution {
@@ -851,16 +1085,27 @@
       border-radius: 0;
       box-shadow: none;
     }
-    .caution h2 { margin: 0 0 10px; color: var(--ink); font-size: 1rem; line-height: 1.4; font-weight: 650; }
-    .caution ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: .9rem; line-height: 1.62; }
+    .caution h2 { margin: 0 0 10px; color: var(--ink); font-size: 18px; line-height: 1.4; font-weight: 700; }
+    .caution ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.62; }
     .caution li + li { margin-top: 8px; }
-    footer { margin-top: 18px; color: var(--muted-soft); font-size: .86rem; line-height: 1.5; text-align: center; }
+    footer { margin-top: 18px; color: var(--muted-soft); font-size: 14px; line-height: 1.5; text-align: center; }
 
     @media (min-width: 560px) {
-      .page { padding-left: 22px; padding-right: 22px; }
+      .page { padding-left: 0; padding-right: 0; }
+      .site-title { min-height: 112px; }
+      .site-title { font-size: 28px; }
+      .hero { min-height: 620px; padding: 64px 64px 34px; }
+      .hero h1 { font-size: 38px; }
+      .hero-main { min-height: 522px; }
       .card { padding: 26px 22px; }
+      #tab-guide > .guide.guide-walkthrough { padding: 34px 32px; }
+      #sec-minwon > .card:first-of-type,
+      #sec-sms { padding: 34px 32px; }
+      .walkthrough-step { padding: 22px 22px 0; }
       .agency-grid { grid-template-columns: 1fr 1fr; }
       .sms-rcpt-btns { grid-template-columns: 1fr 1fr; }
+      .sms-tone-row,
+      .sms-tone-options { grid-template-columns: repeat(4, 1fr); }
       .actions.sms-row,
       .sms-two.sms-row { grid-template-columns: 1fr 1fr; }
       .tip { grid-template-columns: auto 1fr; }
@@ -873,8 +1118,8 @@
         width: 82px;
         height: 82px;
       }
-      .portal-title { font-size: 1.34rem; }
-      .portal-box p { font-size: 1rem; }
+      .portal-title { font-size: 22px; }
+      .portal-box p { font-size: 16px; }
       .portal-box .link-button {
         grid-column: auto;
         min-width: 132px;
@@ -883,13 +1128,26 @@
     }
 
     @media (max-width: 374px) {
-      html { font-size: 17px; }
-      .page { padding-left: 12px; padding-right: 12px; }
-      .subtab { padding-left: 4px; padding-right: 4px; font-size: .82rem; }
-      .subtab .uploaded-icon { width: 17px; height: 17px; }
+      html { font-size: 16px; }
+      .page { padding-left: 0; padding-right: 0; }
+      .site-title { min-height: 80px; padding: 16px 14px; font-size: 20px; }
+      .hero { min-height: 500px; padding: 30px 24px; }
+      .hero h1 { font-size: 28px; }
+      .hero-main { min-height: 440px; }
+      .subtab { padding-left: 4px; padding-right: 4px; font-size: 14px; }
+      .subtab .uploaded-icon { width: 30px; height: 30px; }
+      .subtab small { font-size: 12px; }
       .sms-tone-row,
       .sms-tone-options { gap: 5px; }
-      .sms-tone-option { padding-left: 4px; padding-right: 4px; font-size: .78rem; }
+      .sms-tone-option { padding-left: 4px; padding-right: 4px; font-size: 12px; }
+    }
+
+    @media (max-width: 559px) {
+      #sec-minwon > .card > .portal-box:not(.paste-tip) > .portal-visual { margin-bottom: 32px; }
+      #sec-minwon > .card > .paste-tip > .portal-visual {
+        margin-bottom: 24px;
+        padding-bottom: 0;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -904,6 +1162,7 @@
 </head>
 <body>
   <main class="page">
+    <div class="site-title">과천 재산권 보호 민원 도우미</div>
     <!-- 히어로 -->
     <header class="hero">
       <div class="hero-topline">
@@ -912,11 +1171,8 @@
       </div>
       <div class="hero-main">
         <div class="hero-copy">
-          <h1>재산권 침해 행위를<br>막아주십시오</h1>
-          <p>건축허가 절차가 법에서 정한 기준에 따라 공정·조속하게 처리되도록 민원을 작성해보세요.</p>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <img src="assets/hero-banner-icon.png" alt="">
+          <h1>소중한 재산권,<br>정당한 민원으로 지켜보세요</h1>
+          <p>데이터센터 관련 행정절차가 법령과 공표된 기준에 따라 공정하고 신속하게 처리될 수 있도록, 민원 작성과 접수를 지원합니다.</p>
         </div>
       </div>
       <span class="privacy-chip"><svg class="uploaded-icon icon-alert" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -930,7 +1186,11 @@
     </header>
 
     <div class="subtabs" role="tablist">
-      <button class="subtab is-active" data-sub="minwon" role="tab" aria-selected="true"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button type="button" id="guideToggle" class="subtab guide-toggle is-active" data-sub="guide" role="tab" aria-selected="true" aria-expanded="true"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
+<path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>처음이세요?</span><small>사용방법안내</small></button>
+      <button class="subtab" data-sub="minwon" role="tab" aria-selected="false"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 
 <path d="M3.75 9V3C3.75 2.17157 4.42157 1.5 5.25 1.5H12.75C13.5784 1.5 14.25 2.17157 14.25 3V9" stroke="currentColor" stroke-width="1.5"/>
 <path d="M7.125 7.5H10.875M7.125 4.5H10.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -938,144 +1198,178 @@
 <path d="M16.5 7.5L9.6708 10.9146C9.24855 11.1257 8.75145 11.1257 8.3292 10.9146L1.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
 
 
-</svg><span>국민신문고 접수</span></button>
+</svg><span>국민신문고</span><small>민원작성</small></button>
       <button class="subtab" data-sub="sms" role="tab" aria-selected="false"><svg class="uploaded-icon icon-comment" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.5 7.875C1.5 4.125 4.5 2.25 9 2.25C13.5 2.25 16.5 4.125 16.5 7.875C16.5 11.625 13.5 13.5 9 13.5V15.75C9 15.75 1.5 13.5 1.5 7.875Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M6 6.375H12M6 9.375H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>항의문자 발송</span></button>
-      <button type="button" id="guideToggle" class="subtab guide-toggle" data-sub="guide" role="tab" aria-selected="false" aria-expanded="false"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
-<path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>처음이신가요</span></button>
+</svg><span>문자민원</span><small>내용작성</small></button>
     </div>
 
-    <!-- ============ 탭 2: 처음이신가요? (안내) ============ -->
-    <section id="tab-guide" class="tabpanel" role="tabpanel" hidden>
-      <section class="card guide">
-        <h2 class="guide-title"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
-<path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>민원 접수 방법 &amp; 꿀팁</span></h2>
-        <p class="guide-lead"><span id="guidePortalName">국민신문고</span>가 처음이신 분을 위한 단계별 안내입니다. 아래 순서대로만 하시면 됩니다.</p>
-
-        <div class="guide-sub"><span><span id="guideAgencyHeading">과천시청</span> 민원 접수 순서</span></div>
-        <ol class="steps">
-          <li><span class="step-no">1</span><div><b id="guideLoginTitle">국민신문고 회원가입 및 로그인</b><p id="guideLoginDesc">본인인증(카카오·PASS 등)이 필요합니다.</p><figure class="guide-shot"><img src="assets/epeople-auth-guide.png" alt="국민신문고 간편인증 입력 화면 예시" loading="lazy"><figcaption>간편인증 화면 예시</figcaption></figure></div></li>
-          <li><span class="step-no">2</span><div><b>‘민원 접수 시작하기’에서 <span id="guideAgencyName">과천시청</span> 선택 후 생성된 제목·본문 확인</b><p id="guideAgencyFocus">기관을 바꾸면 문구가 자동으로 그 기관에 맞게 바뀝니다.</p></div></li>
-          <li><span class="step-no">3</span><div><b><span class="kbd">제목 복사</span>·<span class="kbd">본문 복사</span>로 내용 복사</b><p>생성된 문구는 참고용이므로 제출 전에 직접 읽고 사실관계를 확인해 주세요.</p></div></li>
-          <li><span class="step-no">4</span><div><b><span id="guidePortalStep">국민신문고</span> → 일반민원 → 수신기관에 기관명 입력 후 붙여넣기</b><p>수신기관 검색창에 <span id="guideAgencyName2">과천시청</span>을 넣고, 제목·본문을 붙여넣습니다.</p></div></li>
-          <li><span class="step-no">5</span><div><b>최종 제출 전 수신기관과 문구를 다시 확인</b><p id="guideAgencyNote">과천시청에 접수할 때는 건축허가·개발행위 등 시 소관 절차에 맞는 표현인지 확인해 주세요.</p></div></li>
+    <!-- ============ 첫 번째 탭: 처음이세요? (안내) ============ -->
+    <section id="tab-guide" class="tabpanel" role="tabpanel">
+      <section class="card guide guide-walkthrough">
+        <h2 class="walkthrough-title">국민신문고 민원신청 방법을<br>확인해보세요</h2>
+        <ol class="walkthrough-steps">
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">1</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3>국민신문고 홈화면에서 <strong>민원신청</strong>을 누르세요</h3>
+            <p>민원신청 메뉴로 이동합니다.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-1.png?v=4" alt="국민신문고 민원신청 메뉴" loading="lazy">
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">2</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3><strong>비회원 로그인</strong>을 해주세요</h3>
+            <p>휴대폰 본인인증으로 간편하게 본인인증하세요.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-2.png?v=4" alt="비회원 로그인 선택 화면" loading="lazy">
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">3</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3>개인정보 수집 동의 및 신청인 정보를 작성해주세요</h3>
+            <p>민원발생지역은 <strong>경기도 과천시</strong>로 선택해주세요.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-3.png?v=3x" alt="신청인 정보 입력 화면" loading="lazy">
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">4</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3>민원내용을 입력하는 화면이 나오면 민원도우미로 다시 돌아와 주세요</h3>
+            <p>휴대폰에 열려있는 앱 중 카카오톡을 선택해주세요.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-4.png?v=3x" alt="휴대폰에서 민원도우미로 돌아오는 화면" loading="lazy">
+            <p class="walkthrough-alert">※ 크롬, 사파리, 삼성인터넷 등 다른 브라우저로 민원도우미에 접속한 경우, 탭 이동을 해주세요.</p>
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">5</span><span class="walkthrough-brand-group"><span class="walkthrough-tool-label">민원도우미</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></span></div>
+            <h3><strong>제목과 본문 내용을 각각 복사</strong>한 후 국민신문고로 돌아가 붙여넣기 하세요</h3>
+            <div class="walkthrough-image-labels"><span>1. 복사 후 국민신문고로 돌아가기</span><span>2. 입력할 곳 선택 후 붙여넣기</span></div>
+            <img class="walkthrough-shot" src="assets/guide-step-5.png?v=4" alt="민원 제목과 본문 복사 및 붙여넣기" loading="lazy">
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">6</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3>처리기관은 <strong>과천 또는 경기도로 검색</strong> 후 <strong>경기도 과천시 또는 경기도를 선택</strong>하세요</h3>
+            <p>민원도우미에서 민원작성 시 과천시청을 선택한 경우 ‘과천’, 경기도청을 선택한 경우 ‘경기도’로 검색하세요.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-6.png?v=3x" alt="민원 처리기관 검색 및 선택 화면" loading="lazy">
+          </li>
+          <li class="walkthrough-step">
+            <div class="walkthrough-step-head"><span class="walkthrough-step-no">7</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
+            <h3><strong>신청 버튼</strong>을 누르면 민원 신청이 완료됩니다</h3>
+            <p>신청 전 입력한 내용과 처리기관을 마지막으로 확인해주세요.</p>
+            <img class="walkthrough-shot" src="assets/guide-step-7.png?v=4" alt="민원 신청 완료 화면" loading="lazy">
+          </li>
         </ol>
 
-        <div class="guide-sub"><span class="flat-icon save" aria-hidden="true"></span><span>기관별 검토 시간을 줄이는 임시저장 꿀팁</span></div>
-        <ol class="steps alt">
-          <li><span class="step-no">1</span><div><b>민원 내용을 붙여넣은 뒤, 접수 페이지의 <span class="kbd">임시저장</span> 또는 저장 기능 활용</b></div></li>
-          <li><span class="step-no">2</span><div><b>다시 민원 작성 화면으로 이동해 필요한 기본 정보를 확인</b></div></li>
-          <li><span class="step-no">3</span><div><b>저장한 내용이 불러와지는 경우, 기관별 제목·본문만 직접 검토해 수정</b></div></li>
-          <li><span class="step-no">4</span><div><b>기관별 제목·본문을 직접 확인한 뒤 필요한 건만 접수</b></div></li>
-        </ol>
-
-        <div class="tips-title">TIP</div>
-        <div class="tips">
-          <div class="tip"><span class="tip-badge">1</span><div><b>민원 공개 설정.</b> 작성 페이지 하단에서 ‘공개’로 설정하면 더 널리 공유됩니다. 단, 공개글에는 개인정보를 넣지 마세요.</div></div>
-          <div class="tip"><span class="tip-badge">2</span><div><b>주소 미리 등록.</b> 해당 민원 사이트의 ‘내 정보’에서 주소를 미리 등록할 수 있다면 매번 입력할 필요가 줄어듭니다.</div></div>
-          <div class="tip"><span class="tip-badge">3</span><div><b>정중하게.</b> 허위·모욕·비방 표현은 피하고, 사실과 의견을 예의 있게 적어야 민원이 제대로 검토됩니다.</div></div>
-        </div>
+        <section class="portal-box guide-portal" aria-labelledby="guidePortalBannerTitle">
+          <img class="portal-visual" src="assets/portal-link-icon.png" alt="" aria-hidden="true">
+          <div class="portal-copy">
+            <h2 id="guidePortalBannerTitle" class="portal-title">국민신문고</h2>
+            <p>국민신문고로 이동해 안내된 순서에 따라 민원을 신청해주세요.</p>
+          </div>
+          <a class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 민원내용 작성하기"><span class="portal-link-text">국민신문고 민원내용 작성하기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></a>
+        </section>
       </section>
     </section>
 
 
     <!-- ============ 탭 1: 민원 접수 시작하기 ============ -->
-    <section id="tab-apply" class="tabpanel" role="tabpanel" data-mode="minwon">
+    <section id="tab-apply" class="tabpanel" role="tabpanel" data-mode="minwon" hidden>
       <!-- 1) 국민신문고 하위 화면 -->
       <div id="sub-minwon" class="subpanel" role="tabpanel">
-      <section id="sec-minwon" class="card">
-        <h2 class="icon-heading"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div id="sec-minwon">
+      <section class="card">
+        <h2 class="icon-heading"><span>국민신문고 민원 초안을<br>자동으로 작성해드려요</span></h2>
 
-<path d="M3.75 9V3C3.75 2.17157 4.42157 1.5 5.25 1.5H12.75C13.5784 1.5 14.25 2.17157 14.25 3V9" stroke="currentColor" stroke-width="1.5"/>
-<path d="M7.125 7.5H10.875M7.125 4.5H10.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 5.25L16.2803 7.28033C16.4209 7.42098 16.5 7.61175 16.5 7.81065V15C16.5 15.8284 15.8284 16.5 15 16.5H3C2.17157 16.5 1.5 15.8284 1.5 15V7.81065C1.5 7.61175 1.57902 7.42098 1.71967 7.28033L3.75 5.25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M16.5 7.5L9.6708 10.9146C9.24855 11.1257 8.75145 11.1257 8.3292 10.9146L1.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-
-
-</svg><span>국민신문고 민원 접수하기</span></h2>
-        <p class="sub">처리기관을 고르면 재산권 침해 행위 중단 및 조속 처리를 요청하는 제목과 본문 초안이 만들어집니다.</p>
+        <section class="portal-box" aria-labelledby="portalTitle">
+          <img class="portal-visual" src="assets/banner-stop-icon.png?v=1" alt="" aria-hidden="true">
+          <div class="portal-copy">
+            <h3 id="portalTitle" class="portal-title">잠깐! 먼저 국민신문고를 열어주세요.</h3>
+            <p id="portalDesc">민원내용 입력화면까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.</p>
+          </div>
+          <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 열기"><span class="portal-link-text">국민신문고 열기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></a>
+        </section>
 
         <div class="field">
-          <div id="agencyLabel" class="field-title">1. 처리기관 선택</div>
+          <div id="agencyLabel" class="field-title">민원 처리기관 선택</div>
           <input type="hidden" id="agency" value="과천시청">
           <div id="agencyGrid" class="agency-grid" role="listbox" aria-labelledby="agencyLabel"></div>
           <p id="status" class="status" role="status" aria-live="polite"></p>
         </div>
 
-        <div class="result-label"><label for="titleOutput">2. 생성된 제목</label></div>
+        <h2 class="minwon-step-title">1. 제목이 자동작성되었습니다. 복사 후 국민신문고에 붙여넣기 하세요</h2>
+        <p class="sub">국민신문고로 돌아가 민원 제목에 붙여넣어 주세요.</p>
+        <div class="result-label"><label for="titleOutput">제목</label></div>
         <textarea id="titleOutput" class="result-box" readonly></textarea>
         <div class="result-action">
-          <button type="button" id="copyTitle">제목 복사</button>
+          <button type="button" id="copyTitle"><img class="copy-icon" src="assets/copy-outline.svg" alt="" aria-hidden="true">제목 복사</button>
         </div>
         <p id="titleStatus" class="copy-status" role="status" aria-live="polite"></p>
 
-        <div class="result-label"><label for="bodyOutput">3. 생성된 본문</label></div>
+        <h2 class="minwon-step-title">2. 본문이 자동작성되었습니다. 복사 후 국민신문고에 붙여넣기 하세요</h2>
+        <p class="sub">국민신문고로 돌아가 민원 내용에 붙여넣어 주세요.</p>
+        <div class="result-label"><label for="bodyOutput">본문</label></div>
         <div class="body-box">
           <textarea id="bodyOutput" class="result-box body" readonly></textarea>
           <button type="button" id="toggleBody" class="body-toggle" aria-expanded="false">더보기</button>
         </div>
         <div class="result-action">
-          <button type="button" id="copyBody">본문 복사</button>
+          <button type="button" id="copyBody"><img class="copy-icon" src="assets/copy-outline.svg" alt="" aria-hidden="true">본문 복사</button>
         </div>
         <p id="bodyStatus" class="copy-status" role="status" aria-live="polite"></p>
 
-      </section>
-
-      <section class="portal-box portal-standalone" aria-labelledby="portalTitle">
-        <img class="portal-visual" src="assets/portal-link-icon.png" alt="" aria-hidden="true">
+      <aside class="portal-box paste-tip" aria-labelledby="pasteTipTitle">
+        <img class="portal-visual" src="assets/banner_tip_icon.png?v=2" alt="" aria-hidden="true">
         <div class="portal-copy">
-          <h2 id="portalTitle" class="portal-title">국민신문고</h2>
-          <p id="portalDesc">국민신문고로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.</p>
+          <h2 id="pasteTipTitle" class="portal-title">붙여넣기 TIP</h2>
+          <p>휴대폰으로 복사한 내용은 다른 입력창을 터치하면 사라질 수 있으니, 붙여넣기 직전에 복사해주세요.</p>
         </div>
-        <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 바로가기"><span class="portal-link-text">바로가기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a>
+      </aside>
       </section>
+      </div>
       </div><!-- /#sub-minwon -->
 
       <!-- 2) 항의 문자 하위 화면 -->
       <div id="sub-sms" class="subpanel" role="tabpanel" hidden>
       <section id="sec-sms" class="card">
-        <h2 class="icon-heading"><svg class="uploaded-icon icon-comment" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.5 7.875C1.5 4.125 4.5 2.25 9 2.25C13.5 2.25 16.5 4.125 16.5 7.875C16.5 11.625 13.5 13.5 9 13.5V15.75C9 15.75 1.5 13.5 1.5 7.875Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6 6.375H12M6 9.375H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>항의 문자 발송하기</span></h2>
-        <p class="sub">① 수신인과 ② 어조를 고르면 문자 초안이 만들어집니다. 전송 버튼을 누르면 본인 휴대폰 문자 앱이 열립니다.</p>
-
+        <h2 class="icon-heading"><span>항의 문자 발송하기</span></h2>
         <div class="field">
-          <div id="rcptGroups" aria-label="문자 수신인 선택"></div>
+          <div id="rcptLabel" class="field-title">1. 문자 수신인을 선택해주세요.</div>
+          <div id="rcptGroups" aria-labelledby="rcptLabel"></div>
         </div>
 
         <div class="field sms-tone-field">
-          <div class="field-title">② 문자 어조</div>
+          <div class="field-title">2. 문자 어조를 선택해주세요.</div>
           <div class="sms-tone-row">
             <button type="button" class="sms-tone-option is-active" data-tone="검증 요청형" aria-pressed="true">검증 요청형</button>
             <button type="button" class="sms-tone-option" data-tone="균형 검토형" aria-pressed="false">균형 검토형</button>
             <button type="button" class="sms-tone-option" data-tone="차분한 요청형" aria-pressed="false">차분한 요청형</button>
+            <button type="button" class="sms-tone-option" data-tone="원칙 강조형" aria-pressed="false">원칙 강조형</button>
             <span id="smsToneName" class="sms-tone-name" hidden>검증 요청형</span>
           </div>
         </div>
 
-        <div class="sms-two sms-row">
+        <h2 class="sms-compose-title">3. 문자내용이 자동작성되었습니다. 문자 1,2를 각각 전송해주세요.</h2>
+        <p class="sub">문자는 내용이 길어 2개로 나누어 작성하였습니다. 문자 1을 보내고 나서 문자 2를 보내주세요.</p>
+
+        <div class="sms-message-list">
+          <div class="sms-message-block">
           <div class="sms-preview">
-            <div class="sms-preview-title"><span>1차 본문 미리보기</span><span id="smsCount1" class="sms-count">0자</span></div>
+            <div class="sms-preview-title"><span>문자 1/2</span><span id="smsCount1" class="sms-count">0자</span></div>
             <p id="smsPreview1" class="sms-text"></p>
           </div>
+            <div class="actions">
+              <a id="smsSend1" class="link-button" href="#"><img class="send-icon" src="assets/send-outline.svg" alt="" aria-hidden="true"><span>문자 1 보내기</span></a>
+            </div>
+          </div>
+
+          <div class="sms-message-block">
           <div class="sms-preview">
-            <div class="sms-preview-title"><span>2차 본문 미리보기</span><span id="smsCount2" class="sms-count">0자</span></div>
+            <div class="sms-preview-title"><span>문자 2/2</span><span id="smsCount2" class="sms-count">0자</span></div>
             <p id="smsPreview2" class="sms-text"></p>
           </div>
-        </div>
-
-        <div class="actions sms-row">
-          <a id="smsSend1" class="link-button secondary" href="#"><img class="send-icon" src="assets/send-button-icon.svg" alt=""><span>1차 전송</span></a>
-          <a id="smsSend2" class="link-button" href="#"><img class="send-icon" src="assets/send-button-icon.svg" alt=""><span>2차 전송</span></a>
+            <div class="actions">
+              <a id="smsSend2" class="link-button" href="#"><img class="send-icon" src="assets/send-outline.svg" alt="" aria-hidden="true"><span>문자 2 보내기</span></a>
+            </div>
+          </div>
         </div>
 
         <p class="sms-note"><svg class="uploaded-icon icon-alert" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1337,14 +1631,14 @@
      ※ 지금은 테스트 단계라 번호가 모두 동일합니다. 실제 배포 전 확인된 번호로 교체하세요. */
   const SMS_GROUPS = [
     {
-      title: "1. 과천시청 및 국회 관계자",
+      title: "과천시 관계자",
       recipients: [
         { name: "신계용 과천시장", phone: "01012341234" },
         { name: "이소영 국회의원", phone: "01012341234" }
       ]
     },
     {
-      title: "2. 서초구청 및 국회 관계자",
+      title: "서초구 관계자",
       recipients: [
         { name: "전성수 서초구청장", phone: "01012341234" },
         { name: "신동욱 국회의원", phone: "01012341234" }
@@ -1685,20 +1979,18 @@ ${n + 1}. ${purpose.request}
 
   // ① 수신인 카드 렌더링 (처리기관 카드와 동일한 스타일 재사용)
   function buildRcptCards() {
-    rcptGroups.innerHTML = "";
-    SMS_GROUPS.forEach((group) => {
-      const wrap = document.createElement("div");
-      wrap.className = "sms-group";
-      const cards = group.recipients.map((r) => {
-        const sel = r.name === selectedRcpt.name;
-        return `<button type="button" class="agency-card${sel ? " is-selected" : ""}" data-name="${r.name}" data-phone="${r.phone}">` +
-          `<span class="agency-card-top"><span class="agency-name">${r.name}</span></span>` +
-          `<span class="agency-card-note">${dashPhone(r.phone)}</span>` +
-        `</button>`;
-      }).join("");
-      wrap.innerHTML = `<div class="sms-group-title"><span>${group.title}</span></div><div class="agency-grid">${cards}</div>`;
-      rcptGroups.appendChild(wrap);
-    });
+    const recipients = SMS_GROUPS.flatMap((group) =>
+      group.recipients.map((recipient) => ({ ...recipient, relation: group.title }))
+    );
+    const cards = recipients.map((r) => {
+      const sel = r.name === selectedRcpt.name;
+      return `<button type="button" class="agency-card sms-rcpt-card${sel ? " is-selected" : ""}" data-name="${r.name}" data-phone="${r.phone}">` +
+        `<span class="sms-rcpt-role">${r.relation}</span>` +
+        `<span class="sms-rcpt-copy"><span class="agency-name">${r.name}</span>` +
+        `<span class="agency-card-note">${dashPhone(r.phone)}</span></span>` +
+      `</button>`;
+    }).join("");
+    rcptGroups.innerHTML = `<div class="agency-grid">${cards}</div>`;
     rcptGroups.querySelectorAll(".agency-card").forEach((btn) => {
       btn.addEventListener("click", () => {
         selectedRcpt = { name: btn.dataset.name, phone: btn.dataset.phone };
@@ -1741,12 +2033,12 @@ ${n + 1}. ${purpose.request}
   function refreshPortal() {
     const { agency } = getState();
     const portalName = agency.portal.name;
-    portalTitle.textContent = portalName;
+    portalTitle.textContent = `잠깐! 먼저 ${portalName}를 열어주세요.`;
     portalLink.href = agency.portal.url;
-    portalLink.setAttribute("aria-label", `${portalName} 바로가기`);
+    portalLink.setAttribute("aria-label", `${portalName} 열기`);
     const portalLinkText = portalLink.querySelector(".portal-link-text");
-    if (portalLinkText) portalLinkText.textContent = "바로가기";
-    portalDesc.textContent = `${portalName}(으)로 이동해 제목·본문을 붙여넣고 최종 제출 여부를 판단해 주세요.`;
+    if (portalLinkText) portalLinkText.textContent = `${portalName} 열기`;
+    portalDesc.textContent = "민원내용 입력화면까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.";
   }
 
   function refreshGuide() {
