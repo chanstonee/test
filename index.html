@@ -312,7 +312,7 @@
       bottom: 0;
       left: 20%;
       height: 3px;
-      background: #1c1d20;
+      background: rgb(21, 58, 91);
     }
     .subtab .flat-icon {
       width: 34px;
@@ -1045,7 +1045,7 @@
     .walkthrough-step p {
       margin: 0;
       color: #77797e;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.55;
     }
     .walkthrough-step h3 + p:not(.walkthrough-alert),
@@ -1057,7 +1057,7 @@
       margin-top: 10px;
       margin-bottom: 10px;
       color: #ec5272;
-      font-size: 14px;
+      font-size: 16px;
     }
     .walkthrough-shot {
       display: block;
@@ -1065,6 +1065,14 @@
       max-width: 100%;
       height: auto;
       margin: 16px auto 0;
+    }
+    .walkthrough-shot-stack {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .walkthrough-shot-stack .walkthrough-shot {
+      margin-top: 0;
     }
     .walkthrough-image-labels {
       display: grid;
@@ -1221,6 +1229,22 @@
     }
 
     @media (max-width: 559px) {
+      body {
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
+      p, li, textarea,
+      h1, h2, h3, h4, .guide-title {
+        text-wrap: wrap;
+      }
+      #sec-minwon > .card > .portal-box {
+        padding-right: 14px;
+        padding-left: 14px;
+      }
+      #sec-minwon > .card > .paste-tip {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
       #sec-minwon > .card > .portal-box:not(.paste-tip) > .portal-visual { margin-bottom: 0; }
       #sec-minwon > .card > .paste-tip > .portal-visual {
         margin-bottom: 0;
@@ -1333,7 +1357,10 @@
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">6</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
             <h3>처리기관은 <strong>과천 또는 경기도로 검색</strong> 후 <strong>경기도 과천시 또는 경기도를 선택</strong>하세요</h3>
             <p>민원도우미에서 민원작성 시 과천시청을 선택한 경우 ‘과천’, 경기도청을 선택한 경우 ‘경기도’로 검색하세요.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-6.png?v=3x" alt="민원 처리기관 검색 및 선택 화면" loading="lazy">
+            <div class="walkthrough-shot-stack">
+              <img class="walkthrough-shot" src="assets/guide-step-6-1.png?v=202607130955" alt="민원 처리기관 검색 화면" loading="lazy">
+              <img class="walkthrough-shot" src="assets/guide-step-6-2.png?v=202607130955" alt="민원 처리기관 선택 화면" loading="lazy">
+            </div>
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">7</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
