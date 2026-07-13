@@ -323,6 +323,18 @@
       vertical-align: 0;
     }
     .subtab .uploaded-icon { width: 34px; height: 34px; margin-bottom: 4px; color: #d9dde0; }
+    .subtab .tab-icon {
+      display: block;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 4px;
+      background-color: #d9dde0;
+      -webkit-mask: var(--tab-icon) center / contain no-repeat;
+      mask: var(--tab-icon) center / contain no-repeat;
+    }
+    .tab-icon-book { --tab-icon: url("assets/tab-book-icon.svg"); }
+    .tab-icon-writing { --tab-icon: url("assets/tab-writing-icon.svg"); }
+    .tab-icon-sms { --tab-icon: url("assets/tab-sms-icon.svg"); }
     .subtab small { color: #4d4e52; font-size: 12px; font-weight: 500; line-height: 1.25; }
     .subtab:focus-visible,
     button:focus-visible,
@@ -1225,7 +1237,8 @@
       .hero h1 { font-size: 28px; }
       .hero-main { min-height: 440px; }
       .subtab { padding-left: 4px; padding-right: 4px; font-size: 14px; }
-      .subtab .uploaded-icon { width: 30px; height: 30px; }
+      .subtab .uploaded-icon,
+      .subtab .tab-icon { width: 30px; height: 30px; }
       .subtab small { font-size: 12px; }
       .sms-tone-row,
       .sms-tone-options { gap: 5px; }
@@ -1296,23 +1309,9 @@
     </header>
 
     <div class="subtabs" role="tablist">
-      <button type="button" id="guideToggle" class="subtab guide-toggle is-active" data-sub="guide" role="tab" aria-selected="true" aria-expanded="true"><svg class="uploaded-icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5C13.1421 16.5 16.5 13.1421 16.5 9Z" stroke="currentColor" stroke-width="1.5"/>
-<path d="M6 9L8.25 11.25L12 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>처음이세요?</span><small>사용방법안내</small></button>
-      <button class="subtab" data-sub="minwon" role="tab" aria-selected="false"><svg class="uploaded-icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-<path d="M3.75 9V3C3.75 2.17157 4.42157 1.5 5.25 1.5H12.75C13.5784 1.5 14.25 2.17157 14.25 3V9" stroke="currentColor" stroke-width="1.5"/>
-<path d="M7.125 7.5H10.875M7.125 4.5H10.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 5.25L16.2803 7.28033C16.4209 7.42098 16.5 7.61175 16.5 7.81065V15C16.5 15.8284 15.8284 16.5 15 16.5H3C2.17157 16.5 1.5 15.8284 1.5 15V7.81065C1.5 7.61175 1.57902 7.42098 1.71967 7.28033L3.75 5.25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M16.5 7.5L9.6708 10.9146C9.24855 11.1257 8.75145 11.1257 8.3292 10.9146L1.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-
-
-</svg><span>국민신문고</span><small>민원작성</small></button>
-      <button class="subtab" data-sub="sms" role="tab" aria-selected="false"><svg class="uploaded-icon icon-comment" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.5 7.875C1.5 4.125 4.5 2.25 9 2.25C13.5 2.25 16.5 4.125 16.5 7.875C16.5 11.625 13.5 13.5 9 13.5V15.75C9 15.75 1.5 13.5 1.5 7.875Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6 6.375H12M6 9.375H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><span>문자민원</span><small>내용작성</small></button>
+      <button type="button" id="guideToggle" class="subtab guide-toggle is-active" data-sub="guide" role="tab" aria-selected="true" aria-expanded="true"><span class="tab-icon tab-icon-book" aria-hidden="true"></span><span>처음이세요?</span><small>사용방법안내</small></button>
+      <button class="subtab" data-sub="minwon" role="tab" aria-selected="false"><span class="tab-icon tab-icon-writing" aria-hidden="true"></span><span>국민신문고</span><small>민원작성</small></button>
+      <button class="subtab" data-sub="sms" role="tab" aria-selected="false"><span class="tab-icon tab-icon-sms" aria-hidden="true"></span><span>문자민원</span><small>내용작성</small></button>
     </div>
 
     <!-- ============ 첫 번째 탭: 처음이세요? (안내) ============ -->
