@@ -36,8 +36,8 @@
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
-      --space-4: 16px;
-      --space-5: 20px;
+      --space-4: 24px;
+      --space-5: 24px;
       --space-6: 24px;
       --space-7: 32px;
     }
@@ -664,6 +664,10 @@
       font-weight: 500;
       line-height: 1.42;
     }
+    .paste-tip {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
     .portal-box .link-button {
       grid-column: 1 / -1;
       min-height: 54px;
@@ -1044,8 +1048,14 @@
       font-size: 14px;
       line-height: 1.55;
     }
+    .walkthrough-step h3 + p:not(.walkthrough-alert),
+    .portal-title + p,
+    .minwon-step-title + .sub {
+      margin-top: 16px;
+    }
     .walkthrough-step .walkthrough-alert {
       margin-top: 10px;
+      margin-bottom: 10px;
       color: #ec5272;
       font-size: 14px;
     }
@@ -1067,6 +1077,73 @@
       line-height: 1.4;
     }
     .walkthrough-image-labels + .walkthrough-shot { margin-top: var(--space-2); }
+    .walkthrough-step-five {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .walkthrough-step-five .walkthrough-step-head,
+    .walkthrough-step-five > h3 {
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+    .walkthrough-step-five > h3 {
+      margin-top: 10px;
+      color: #38383b;
+      font-size: 18px;
+      text-align: left;
+    }
+    .walkthrough-step-five > .walkthrough-copy-return {
+      margin: 0 16px;
+      padding-top: 34px;
+      color: #2468df;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .walkthrough-step-five .walkthrough-shot {
+      width: 100%;
+      max-width: 510px;
+    }
+    .walkthrough-step-five > .walkthrough-shot {
+      width: calc(100% - 32px);
+      max-width: 478px;
+    }
+    .walkthrough-device-guide {
+      padding: 34px 16px 0;
+      text-align: center;
+    }
+    .walkthrough-device-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin: 0;
+      padding: 7px 20px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      background: #3156b8;
+      border-radius: 999px;
+    }
+    .walkthrough-device-guide > p.walkthrough-device-copy {
+      margin: 14px 16px 0;
+      color: #2468df;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .walkthrough-device-guide .walkthrough-shot {
+      margin-top: 14px;
+    }
+    .guide-tab-button {
+      display: flex;
+      width: fit-content;
+      max-width: calc(100% - 32px);
+      margin: 32px auto 0;
+    }
+    #minwonDraftTitle { scroll-margin-top: 140px; }
     .walkthrough-step:nth-child(2) > .walkthrough-shot {
       justify-self: center;
       width: calc(100% + 44px);
@@ -1077,7 +1154,8 @@
     }
 
     .caution {
-      margin-top: 12px;
+      width: calc(100% - 32px);
+      margin: 12px auto 0;
       padding: 16px 14px;
       color: var(--muted);
       background: transparent;
@@ -1143,9 +1221,9 @@
     }
 
     @media (max-width: 559px) {
-      #sec-minwon > .card > .portal-box:not(.paste-tip) > .portal-visual { margin-bottom: 32px; }
+      #sec-minwon > .card > .portal-box:not(.paste-tip) > .portal-visual { margin-bottom: 0; }
       #sec-minwon > .card > .paste-tip > .portal-visual {
-        margin-bottom: 24px;
+        margin-bottom: 0;
         padding-bottom: 0;
       }
     }
@@ -1235,11 +1313,21 @@
             <img class="walkthrough-shot" src="assets/guide-step-4.png?v=3x" alt="휴대폰에서 민원도우미로 돌아오는 화면" loading="lazy">
             <p class="walkthrough-alert">※ 크롬, 사파리, 삼성인터넷 등 다른 브라우저로 민원도우미에 접속한 경우, 탭 이동을 해주세요.</p>
           </li>
-          <li class="walkthrough-step">
+          <li class="walkthrough-step walkthrough-step-five">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">5</span><span class="walkthrough-brand-group"><span class="walkthrough-tool-label">민원도우미</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></span></div>
-            <h3><strong>제목과 본문 내용을 각각 복사</strong>한 후 국민신문고로 돌아가 붙여넣기 하세요</h3>
-            <div class="walkthrough-image-labels"><span>1. 복사 후 국민신문고로 돌아가기</span><span>2. 입력할 곳 선택 후 붙여넣기</span></div>
-            <img class="walkthrough-shot" src="assets/guide-step-5.png?v=4" alt="민원 제목과 본문 복사 및 붙여넣기" loading="lazy">
+            <h3><strong>제목과 본문 내용을 각각 복사</strong> 후 국민신문고로 돌아가 붙여넣기 하세요</h3>
+            <p class="walkthrough-copy-return">1. 복사 후 국민신문고로 돌아가기</p>
+            <img class="walkthrough-shot" src="assets/guide-step-5.png?v=202607130907" alt="민원도우미에서 제목과 본문 복사하기" loading="lazy">
+            <section class="walkthrough-device-guide" aria-labelledby="galaxyGuideTitle">
+              <h4 id="galaxyGuideTitle" class="walkthrough-device-label">갤럭시</h4>
+              <p class="walkthrough-device-copy">2. 입력란 선택 후 키패드 위의 복사한 텍스트 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-5-galaxy.png?v=202607130925" alt="갤럭시에서 복사한 민원 내용 붙여넣기" loading="lazy">
+            </section>
+            <section class="walkthrough-device-guide" aria-labelledby="iphoneGuideTitle">
+              <h4 id="iphoneGuideTitle" class="walkthrough-device-label">아이폰</h4>
+              <p class="walkthrough-device-copy">2. 입력란을 꾹 누른 후 붙여넣기 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-5-iphone.png?v=202607130925" alt="아이폰에서 복사한 민원 내용 붙여넣기" loading="lazy">
+            </section>
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">6</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
@@ -1255,16 +1343,9 @@
           </li>
         </ol>
 
-        <section class="portal-box guide-portal" aria-labelledby="guidePortalBannerTitle">
-          <img class="portal-visual" src="assets/portal-link-icon.png" alt="" aria-hidden="true">
-          <div class="portal-copy">
-            <h2 id="guidePortalBannerTitle" class="portal-title">국민신문고</h2>
-            <p>국민신문고로 이동해 안내된 순서에 따라 민원을 신청해주세요.</p>
-          </div>
-          <a class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 민원내용 작성하기"><span class="portal-link-text">국민신문고 민원내용 작성하기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button id="guideMinwonTabButton" type="button" class="link-button guide-tab-button" aria-label="국민신문고 민원작성 탭으로 이동"><span class="portal-link-text">국민신문고 민원내용 작성하기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></a>
-        </section>
+</svg></button>
       </section>
     </section>
 
@@ -1275,7 +1356,7 @@
       <div id="sub-minwon" class="subpanel" role="tabpanel">
       <div id="sec-minwon">
       <section class="card">
-        <h2 class="icon-heading"><span>국민신문고 민원 초안을<br>자동으로 작성해드려요</span></h2>
+        <h2 id="minwonDraftTitle" class="icon-heading"><span>국민신문고 민원 초안을<br>자동으로 작성해드려요</span></h2>
 
         <section class="portal-box" aria-labelledby="portalTitle">
           <img class="portal-visual" src="assets/banner-stop-icon.png?v=1" alt="" aria-hidden="true">
@@ -1283,17 +1364,12 @@
             <h3 id="portalTitle" class="portal-title">잠깐! 먼저 국민신문고를 열어주세요.</h3>
             <p id="portalDesc">민원내용 입력화면까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.</p>
           </div>
-          <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="noopener noreferrer" aria-label="국민신문고 열기"><span class="portal-link-text">국민신문고 열기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="external noopener noreferrer" aria-label="국민신문고 열기 (외부 사이트)"><span class="portal-link-text">국민신문고 열기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></a>
         </section>
 
-        <div class="field">
-          <div id="agencyLabel" class="field-title">민원 처리기관 선택</div>
-          <input type="hidden" id="agency" value="과천시청">
-          <div id="agencyGrid" class="agency-grid" role="listbox" aria-labelledby="agencyLabel"></div>
-          <p id="status" class="status" role="status" aria-live="polite"></p>
-        </div>
+        <input type="hidden" id="agency" value="과천시청">
 
         <h2 class="minwon-step-title">1. 제목이 자동작성되었습니다. 복사 후 국민신문고에 붙여넣기 하세요</h2>
         <p class="sub">국민신문고로 돌아가 민원 제목에 붙여넣어 주세요.</p>
@@ -1330,7 +1406,7 @@
       <!-- 2) 항의 문자 하위 화면 -->
       <div id="sub-sms" class="subpanel" role="tabpanel" hidden>
       <section id="sec-sms" class="card">
-        <h2 class="icon-heading"><span>항의 문자 발송하기</span></h2>
+        <h2 class="icon-heading"><span>민원 문자 내용을<br>자동으로 작성해드려요</span></h2>
         <div class="field">
           <div id="rcptLabel" class="field-title">1. 문자 수신인을 선택해주세요.</div>
           <div id="rcptGroups" aria-labelledby="rcptLabel"></div>
@@ -1741,7 +1817,7 @@
   const FIXED_PURPOSE_KEY = "stop";
   const FIXED_STAKEHOLDER = "과천 대토 보상 원주민";
   const $ = (id) => document.getElementById(id);
-  const agencyEl = $("agency"), agencyGrid = $("agencyGrid");
+  const agencyEl = $("agency");
   const titleOutput = $("titleOutput"), bodyOutput = $("bodyOutput");
   const toggleBody = $("toggleBody"), guideToggle = $("guideToggle");
   const statusEl = $("status"), titleStatusEl = $("titleStatus"), bodyStatusEl = $("bodyStatus");
@@ -1753,6 +1829,7 @@
   // 하위 탭 전환 (국민신문고 접수 / 항의문자 발송 / 처음이신가요) — 화면 전체가 바뀜
   document.querySelectorAll(".subtab").forEach((sub) => {
     sub.addEventListener("click", () => {
+      const scrollPosition = window.scrollY;
       const target = sub.dataset.sub;
       document.querySelectorAll(".subtab").forEach((s) => {
         const on = s === sub;
@@ -1766,24 +1843,16 @@
       $("sub-sms").hidden = target !== "sms";
       $("tab-apply").dataset.mode = isGuide ? "" : target;
       updateGuideToggle();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // 탭을 바꿔도 사용자가 보고 있던 세로 위치를 유지한다.
+      requestAnimationFrame(() => window.scrollTo({ top: scrollPosition, behavior: "instant" }));
     });
   });
 
-  // 기관 카드 자동 생성
-  VISIBLE_AGENCIES.forEach((key, idx) => {
-    const info = AGENCIES[key];
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "agency-card" + (idx === 0 ? " is-selected" : "");
-    btn.dataset.agency = key;
-    btn.setAttribute("role", "option");
-    btn.setAttribute("aria-selected", idx === 0 ? "true" : "false");
-    btn.innerHTML =
-      `<span class="agency-card-top"><span class="agency-badge${info.rec ? " rec" : ""}">${info.badge}</span>` +
-      `<span class="agency-name">${key}</span></span>`;
-    btn.addEventListener("click", () => setAgency(key));
-    agencyGrid.appendChild(btn);
+  $("guideMinwonTabButton").addEventListener("click", () => {
+    document.querySelector('.subtab[data-sub="minwon"]').click();
+    requestAnimationFrame(() => {
+      $("minwonDraftTitle").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
 
   let smsToneIndex = SMS_TONES.findIndex((tone) => tone.name === "검증 요청형");
@@ -2092,17 +2161,8 @@ ${n + 1}. ${purpose.request}
     renderSms();
     if (message) setStatus(message);
   }
-  function setAgency(key) {
-    agencyEl.value = key;
-    Array.from(agencyGrid.children).forEach((btn) => {
-      const sel = btn.dataset.agency === key;
-      btn.classList.toggle("is-selected", sel);
-      btn.setAttribute("aria-selected", sel ? "true" : "false");
-
-    });
-    refreshAll(`${key}을(를) 처리기관으로 선택했습니다.`);
-  }
   function setStatus(msg) {
+    if (!statusEl) return;
     statusEl.textContent = msg;
     clearTimeout(setStatus.t);
     setStatus.t = setTimeout(() => { statusEl.textContent = ""; }, 3200);
