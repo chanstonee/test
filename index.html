@@ -1092,6 +1092,53 @@
     .walkthrough-shot-stack .walkthrough-shot {
       margin-top: 0;
     }
+    .walkthrough-subguide,
+    .walkthrough-agency-guide {
+      padding-top: 28px;
+      text-align: center;
+    }
+    .walkthrough-subguide-copy,
+    .walkthrough-agency-copy {
+      margin: 0 16px;
+      color: #2468df;
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .walkthrough-step .walkthrough-subguide > p.walkthrough-subguide-copy {
+      color: #2468df;
+    }
+    .walkthrough-inline-icon {
+      display: inline-block;
+      width: 24px;
+      height: 20px;
+      margin: 0 3px;
+      object-fit: contain;
+      vertical-align: -4px;
+    }
+    .walkthrough-subguide .walkthrough-shot,
+    .walkthrough-agency-guide .walkthrough-shot {
+      margin-top: 14px;
+    }
+    .walkthrough-agency-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin: 0 0 14px;
+      padding: 7px 20px;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: #3156b8;
+      border-radius: 999px;
+    }
+    .walkthrough-agency-copy strong {
+      color: #2468df;
+      font-weight: 700;
+    }
     .walkthrough-image-labels {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1274,6 +1321,133 @@
       }
     }
 
+    #sec-minwon .portal-launch-banner {
+      display: block;
+      min-height: 0;
+      margin-top: var(--space-3);
+      padding: 28px;
+      overflow: hidden;
+      background: #f1f4ff;
+      border-color: #d8def0;
+      border-radius: 24px;
+    }
+    .portal-launch-banner .portal-copy { padding: 0; }
+    .portal-launch-banner .portal-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: #20232b;
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.35;
+      word-break: keep-all;
+      overflow-wrap: normal;
+      scroll-margin-top: 140px;
+    }
+    .portal-stop-icon {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+    .portal-launch-banner .portal-title-kicker,
+    .portal-launch-banner .portal-title-main { display: inline; }
+    #sec-minwon .portal-launch-banner p {
+      color: #20232b;
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.6;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+    .portal-launch-desc .portal-path {
+      color: #2468df;
+      font-weight: 700;
+    }
+    #sec-minwon .portal-launch-button {
+      display: flex;
+      width: 100%;
+      min-height: var(--tap);
+      margin-top: 24px;
+      padding: 13px 15px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 900;
+      background: var(--primary);
+      border-color: var(--primary);
+      border-radius: var(--radius);
+    }
+    #sec-minwon .portal-launch-button .portal-link-text {
+      padding-left: 0;
+    }
+    .portal-kakao-tip {
+      margin-top: 24px;
+      padding: 20px 22px;
+      background: #ffffff;
+      border-radius: 24px;
+    }
+    .portal-kakao-title {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: #ed2f70;
+      font-size: 1.375rem;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+    .portal-kakao-logo {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+    }
+    #sec-minwon .portal-kakao-tip p {
+      color: #20232b;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+    .portal-kakao-emphasis {
+      color: #ed2f70;
+      font-weight: 800;
+    }
+    @media (max-width: 559px) {
+      #sec-minwon .portal-launch-banner {
+        padding: 20px 14px;
+        border-radius: 20px;
+      }
+      .portal-launch-banner .portal-title {
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        font-size: 1.375rem;
+      }
+      .portal-stop-icon {
+        width: 28px;
+        height: 28px;
+      }
+      #sec-minwon .portal-launch-banner p {
+        font-size: 1.125rem;
+        line-height: 1.55;
+      }
+      #sec-minwon .portal-launch-button {
+        min-height: 58px;
+        margin-top: 20px;
+        font-size: 1rem;
+      }
+      .portal-kakao-tip {
+        margin-top: 20px;
+        padding: 18px 16px;
+        border-radius: 20px;
+      }
+      .portal-kakao-title {
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1.375rem;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -1322,27 +1496,32 @@
         <ol class="walkthrough-steps">
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">1</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
-            <h3>국민신문고 홈화면에서 <strong>민원신청</strong>을 누르세요</h3>
-            <p>민원신청 메뉴로 이동합니다.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-1.png?v=4" alt="국민신문고 민원신청 메뉴" loading="lazy">
+            <h3>국민신문고 홈화면에서 <strong>민원신청</strong>을<br>누르세요</h3>
+            <img class="walkthrough-shot" src="assets/guide-step-1.png?v=20260714-2" alt="국민신문고 민원신청 메뉴" loading="lazy">
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">2</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
             <h3><strong>비회원 로그인</strong>을 해주세요</h3>
             <p>휴대폰 본인인증으로 간편하게 본인인증하세요.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-2.png?v=4" alt="비회원 로그인 선택 화면" loading="lazy">
+            <img class="walkthrough-shot" src="assets/guide-step-2.png?v=20260714-2" alt="비회원 로그인 선택 화면" loading="lazy">
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">3</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
             <h3>개인정보 수집 동의 및 신청인 정보를 작성해주세요</h3>
             <p>민원발생지역은 <strong>경기도 과천시</strong>로 선택해주세요.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-3.png?v=3x" alt="신청인 정보 입력 화면" loading="lazy">
+            <img class="walkthrough-shot" src="assets/guide-step-3.png?v=20260714-3" alt="신청인 정보 입력 화면" loading="lazy">
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">4</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
-            <h3>민원내용을 입력하는 화면이 나오면 민원도우미로 다시 돌아와 주세요</h3>
-            <p>휴대폰에 열려있는 앱 중 카카오톡을 선택해주세요.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-4.png?v=3x" alt="휴대폰에서 민원도우미로 돌아오는 화면" loading="lazy">
+            <h3>민원내용을 입력하는 화면이<br>나오면 민원도우미로 다시 돌아와 주세요</h3>
+            <section class="walkthrough-subguide" aria-label="휴대폰 최근 앱 버튼 선택">
+              <p class="walkthrough-subguide-copy">1. 휴대폰 하단에 <img class="walkthrough-inline-icon" src="assets/guide-step-4-1-icon.svg" alt="최근 앱"> 버튼 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-4-1.png?v=20260714-3" alt="휴대폰 하단 최근 앱 버튼 선택 화면" loading="lazy">
+            </section>
+            <section class="walkthrough-subguide" aria-label="카카오톡 선택">
+              <p class="walkthrough-subguide-copy">2. 열려있는 앱 중 카카오톡 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-4-2.png?v=20260714-2" alt="열려 있는 앱 중 카카오톡 선택 화면" loading="lazy">
+            </section>
             <p class="walkthrough-alert">※ 크롬, 사파리, 삼성인터넷 등 다른 브라우저로 민원도우미에 접속한 경우, 탭 이동을 해주세요.</p>
           </li>
           <li class="walkthrough-step walkthrough-step-five">
@@ -1364,11 +1543,16 @@
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">6</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
             <h3>처리기관은 <strong>과천 또는 경기도로 검색</strong> 후 <strong>경기도 과천시 또는 경기도를 선택</strong>하세요</h3>
-            <p>민원도우미에서 민원작성 시 과천시청을 선택한 경우 ‘과천’, 경기도청을 선택한 경우 ‘경기도’로 검색하세요.</p>
-            <div class="walkthrough-shot-stack">
-              <img class="walkthrough-shot" src="assets/guide-step-6-1.png?v=202607130955" alt="민원 처리기관 검색 화면" loading="lazy">
-              <img class="walkthrough-shot" src="assets/guide-step-6-2.png?v=202607130955" alt="민원 처리기관 선택 화면" loading="lazy">
-            </div>
+            <section class="walkthrough-agency-guide" aria-labelledby="gwacheonAgencyGuideTitle">
+              <h4 id="gwacheonAgencyGuideTitle" class="walkthrough-agency-label">과천시청</h4>
+              <p class="walkthrough-agency-copy">과천 검색 후 <strong>[경기도 과천시]</strong> 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-6-1.png?v=20260714-2" alt="과천 검색 후 경기도 과천시 선택 화면" loading="lazy">
+            </section>
+            <section class="walkthrough-agency-guide" aria-labelledby="gyeonggiAgencyGuideTitle">
+              <h4 id="gyeonggiAgencyGuideTitle" class="walkthrough-agency-label">경기도청</h4>
+              <p class="walkthrough-agency-copy">경기도 검색 후 <strong>[경기도]</strong> 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-6-2.png?v=20260714-2" alt="경기도 검색 후 경기도 선택 화면" loading="lazy">
+            </section>
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">7</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
@@ -1393,15 +1577,21 @@
       <section class="card">
         <h2 id="minwonDraftTitle" class="icon-heading"><span>국민신문고 민원 초안을<br>자동으로 작성해드려요</span></h2>
 
-        <section class="portal-box" aria-labelledby="portalTitle">
-          <img class="portal-visual" src="assets/banner-stop-icon.png?v=1" alt="" aria-hidden="true">
+        <section class="portal-box portal-launch-banner" aria-labelledby="portalTitle">
           <div class="portal-copy">
-            <h3 id="portalTitle" class="portal-title">잠깐! 먼저 국민신문고를 열어주세요.</h3>
-            <p id="portalDesc">민원내용 입력화면까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.</p>
+            <h3 id="portalTitle" class="portal-title"><img class="portal-stop-icon" src="assets/banner-stop-icon.png?v=2" alt="" aria-hidden="true"><span><span class="portal-title-kicker">잠깐!</span> <span class="portal-title-main">먼저 국민신문고를 열어주세요.</span></span></h3>
+            <p id="portalDesc" class="portal-launch-desc"><strong class="portal-path">국민신문고&gt;민원신청&gt;민원내용 입력화면</strong>까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.</p>
           </div>
-          <a id="portalLink" class="link-button" href="https://www.epeople.go.kr/" target="_blank" rel="external noopener noreferrer" aria-label="국민신문고 열기 (외부 사이트)"><span class="portal-link-text">국민신문고 열기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a id="portalLink" class="link-button portal-launch-button" href="https://www.epeople.go.kr/" target="_blank" rel="external noopener noreferrer" aria-label="국민신문고 버튼 꾹 누르기 (외부 사이트)"><span class="portal-link-text">국민신문고 버튼 꾹 누르기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></a>
+          <aside class="portal-kakao-tip" aria-labelledby="portalKakaoTitle">
+            <h4 id="portalKakaoTitle" class="portal-kakao-title">
+              <img class="portal-kakao-logo" src="assets/kakao-logo.svg?v=1" alt="" aria-hidden="true">
+              <span>카카오톡으로 접속하셨나요?</span>
+            </h4>
+            <p>[국민신문고 열기] 버튼을 길게 누른 후 <span class="portal-kakao-emphasis">다른 브라우저로 열기</span>를 선택해주세요.</p>
+          </aside>
         </section>
 
         <input type="hidden" id="agency" value="과천시청">
@@ -2137,12 +2327,14 @@ ${n + 1}. ${purpose.request}
   function refreshPortal() {
     const { agency } = getState();
     const portalName = agency.portal.name;
-    portalTitle.textContent = `잠깐! 먼저 ${portalName}를 열어주세요.`;
+    const portalTitleMain = portalTitle.querySelector(".portal-title-main");
+    if (portalTitleMain) portalTitleMain.textContent = `먼저 ${portalName}를 열어주세요.`;
     portalLink.href = agency.portal.url;
-    portalLink.setAttribute("aria-label", `${portalName} 열기`);
+    portalLink.setAttribute("aria-label", `${portalName} 버튼 꾹 누르기`);
     const portalLinkText = portalLink.querySelector(".portal-link-text");
-    if (portalLinkText) portalLinkText.textContent = `${portalName} 열기`;
-    portalDesc.textContent = "민원내용 입력화면까지 진행하세요. 그 다음 이 화면으로 돌아와 민원내용을 복사하세요.";
+    if (portalLinkText) portalLinkText.textContent = `${portalName} 버튼 꾹 누르기`;
+    const portalPath = portalDesc.querySelector(".portal-path");
+    if (portalPath) portalPath.textContent = `${portalName}>민원신청>민원내용 입력화면`;
   }
 
   function refreshGuide() {
