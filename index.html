@@ -56,7 +56,7 @@
       font-family: var(--font-sans);
       line-height: 1.7;
       letter-spacing: 0;
-      word-break: keep-all;
+      word-break: normal;
       overflow-wrap: anywhere;
       background: var(--bg);
       -webkit-tap-highlight-color: rgba(21, 58, 91, .14);
@@ -65,8 +65,11 @@
     button, input, textarea, select { font: inherit; }
     button, .link-button { touch-action: manipulation; }
     [hidden] { display: none !important; }
-    p, li, textarea { text-wrap: pretty; }
-    h1, h2, .guide-title { text-wrap: balance; }
+    h1, h2, h3, h4, p, li, label, button, a, span, textarea {
+      text-wrap: wrap;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
 
     .flat-icon {
       position: relative;
@@ -1343,8 +1346,8 @@
       font-size: 1.5rem;
       font-weight: 700;
       line-height: 1.35;
-      word-break: keep-all;
-      overflow-wrap: normal;
+      word-break: normal;
+      overflow-wrap: anywhere;
       scroll-margin-top: 140px;
     }
     .portal-stop-icon {
@@ -1360,8 +1363,8 @@
       font-size: 1.125rem;
       font-weight: 500;
       line-height: 1.6;
-      word-break: keep-all;
-      overflow-wrap: normal;
+      word-break: normal;
+      overflow-wrap: anywhere;
     }
     .portal-launch-desc .portal-path {
       color: #2468df;
@@ -1471,7 +1474,7 @@
       </div>
       <div class="hero-main">
         <div class="hero-copy">
-          <h1>소중한 재산권,<br>정당한 민원으로 지켜보세요</h1>
+          <h1>소중한 재산권, 정당한 민원으로 지켜보세요</h1>
           <p>데이터센터 관련 행정절차가 법령과 공표된 기준에 따라 공정하고 신속하게 처리될 수 있도록, 민원 작성과 접수를 지원합니다.</p>
         </div>
       </div>
@@ -1494,11 +1497,11 @@
     <!-- ============ 첫 번째 탭: 처음이세요? (안내) ============ -->
     <section id="tab-guide" class="tabpanel" role="tabpanel">
       <section class="card guide guide-walkthrough">
-        <h2 class="walkthrough-title">국민신문고 민원신청 방법을<br>확인해보세요</h2>
+        <h2 class="walkthrough-title">국민신문고 민원신청 방법을 확인해보세요</h2>
         <ol class="walkthrough-steps">
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">1</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
-            <h3>국민신문고 홈화면에서 <strong>민원신청</strong>을<br>누르세요</h3>
+            <h3>국민신문고 홈화면에서 <strong>민원신청</strong>을 누르세요</h3>
             <img class="walkthrough-shot" src="assets/guide-step-1.png?v=20260714-2" alt="국민신문고 민원신청 메뉴" loading="lazy">
           </li>
           <li class="walkthrough-step">
@@ -1515,7 +1518,7 @@
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">4</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
-            <h3>민원내용을 입력하는 화면이<br>나오면 민원도우미로 다시 돌아와 주세요</h3>
+            <h3>민원내용을 입력하는 화면이 나오면 민원도우미로 다시 돌아와 주세요</h3>
             <section class="walkthrough-subguide" aria-label="휴대폰 최근 앱 버튼 선택">
               <p class="walkthrough-subguide-copy">1. 휴대폰 하단에 <img class="walkthrough-inline-icon" src="assets/guide-step-4-1-icon.svg" alt="최근 앱"> 버튼 선택</p>
               <img class="walkthrough-shot" src="assets/guide-step-4-1.png?v=20260714-3" alt="휴대폰 하단 최근 앱 버튼 선택 화면" loading="lazy">
@@ -1577,7 +1580,7 @@
       <div id="sub-minwon" class="subpanel" role="tabpanel">
       <div id="sec-minwon">
       <section class="card">
-        <h2 id="minwonDraftTitle" class="icon-heading"><span>국민신문고 민원 초안을<br>자동으로 작성해드려요</span></h2>
+        <h2 id="minwonDraftTitle" class="icon-heading"><span>국민신문고 민원 초안을 자동으로 작성해드려요</span></h2>
 
         <section class="portal-box portal-launch-banner" aria-labelledby="portalTitle">
           <div class="portal-copy">
@@ -1633,7 +1636,7 @@
       <!-- 2) 항의 문자 하위 화면 -->
       <div id="sub-sms" class="subpanel" role="tabpanel" hidden>
       <section id="sec-sms" class="card">
-        <h2 class="icon-heading"><span>민원 문자 내용을<br>자동으로 작성해드려요</span></h2>
+        <h2 class="icon-heading"><span>민원 문자 내용을 자동으로 작성해드려요</span></h2>
         <div class="field">
           <div id="rcptLabel" class="field-title">1. 문자 수신인을 선택해주세요.</div>
           <div id="rcptGroups" aria-labelledby="rcptLabel"></div>
