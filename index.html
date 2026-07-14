@@ -10,6 +10,7 @@
   <meta property="og:description" content="재산권 침해 행위 중단을 요청하는 민원을 손쉽게 작성·접수하세요. (개인정보 미저장)">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png?v=20260713101335">
   <link rel="apple-touch-icon" sizes="512x512" href="assets/favicon.png?v=20260713101335">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <style>
     :root {
       --bg: #f3f6fa;
@@ -31,7 +32,8 @@
       --notice-soft: #fff8e8;
       --danger: #8a2d20;
       --danger-soft: #fff5f2;
-      --mono: "JetBrains Mono", "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --font-sans: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: var(--font-sans);
       --radius: 8px;
       --tap: 58px;
       --space-1: 4px;
@@ -51,7 +53,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      font-family: var(--font-sans);
       line-height: 1.7;
       letter-spacing: 0;
       word-break: keep-all;
@@ -152,7 +154,7 @@
       padding: 16px 20px;
       color: #2d2d30;
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.3;
       text-align: center;
       background: var(--surface);
@@ -196,7 +198,7 @@
       padding: 6px 12px;
       color: #e5f1ff;
       font-size: 0.75rem;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.35;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(203, 224, 244, .35);
@@ -213,7 +215,7 @@
       font-size: 1.875rem;
       line-height: 1.27;
       letter-spacing: -.025em;
-      font-weight: 900;
+      font-weight: 700;
       max-width: none;
     }
     .hero p {
@@ -229,7 +231,7 @@
       display: inline-block;
       width: 14px;
       color: currentColor;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.45;
       text-align: center;
     }
@@ -250,7 +252,7 @@
       color: var(--ink);
       font-size: 1.125rem;
       line-height: 1.36;
-      font-weight: 900;
+      font-weight: 700;
       letter-spacing: 0;
     }
     .card > .sub,
@@ -287,7 +289,7 @@
       padding: 18px 6px 16px;
       color: #333438;
       font-size: 1rem;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.28;
       background: #ffffff;
       border: 0;
@@ -364,7 +366,7 @@
     label {
       color: var(--ink);
       font-size: 1rem;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.42;
     }
     .field-title::before,
@@ -440,7 +442,7 @@
       background: #ffffff;
       border: 1px solid rgba(18, 56, 93, .16);
     }
-    .agency-name { font-size: 1rem; font-weight: 650; line-height: 1.3; }
+    .agency-name { font-size: 1rem; font-weight: 600; line-height: 1.3; }
     .agency-card-note { color: var(--muted); font-size: 0.875rem; font-weight: 400; line-height: 1.42; }
     #agencyGrid .agency-card-note { display: none; }
     .agency-card.is-selected .agency-card-note { color: #edf4fb; }
@@ -467,7 +469,7 @@
     }
     .sms-rcpt-copy .agency-name {
       font-size: 1.125rem;
-      font-weight: 800;
+      font-weight: 700;
     }
     #rcptGroups .sms-rcpt-copy .agency-card-note {
       display: block;
@@ -501,7 +503,7 @@
       padding: 13px 15px;
       color: var(--surface);
       font-size: 1rem;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.34;
       text-align: center;
       text-decoration: none;
@@ -524,7 +526,7 @@
       align-items: center;
       gap: 8px;
       margin: var(--space-6) 0 var(--space-2);
-      font-weight: 650;
+      font-weight: 600;
     }
     .result-label span {
       display: inline-flex;
@@ -573,7 +575,7 @@
       padding: 10px 12px;
       color: var(--primary-dark);
       font-size: 1rem;
-      font-weight: 650;
+      font-weight: 600;
       background: var(--surface);
       border: 0;
       border-top: 1px solid var(--line);
@@ -668,7 +670,7 @@
       margin: 0 0 3px;
       color: var(--primary);
       font-size: 1.375rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.3;
       letter-spacing: 0;
     }
@@ -693,7 +695,7 @@
       padding-left: 20px;
       color: #ffffff;
       font-size: 1rem;
-      font-weight: 900;
+      font-weight: 700;
       background: var(--primary);
       border-color: var(--primary);
     }
@@ -738,7 +740,7 @@
       padding: 10px 6px;
       color: var(--primary);
       font-size: 0.875rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.28;
       background: var(--surface);
       border: 1px solid var(--line-strong);
@@ -800,7 +802,7 @@
     .sms-message-block .actions { margin-top: 0; }
     .sms-recipients { display: grid; gap: 12px; margin-top: 8px; }
     .sms-rcpt { padding: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: none; }
-    .sms-rcpt-name { margin-bottom: 10px; color: var(--ink); font-size: 1rem; font-weight: 650; line-height: 1.4; }
+    .sms-rcpt-name { margin-bottom: 10px; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.4; }
     .sms-rcpt-btns { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .sms-rcpt-btns .link-button { min-height: 52px; }
     .sms-empty { margin: 0; padding: 14px; color: var(--muted); font-size: 1rem; line-height: 1.58; background: var(--surface-soft); border: 1px solid var(--line); border-radius: var(--radius); }
@@ -856,7 +858,7 @@
       padding: 9px 10px;
       color: var(--ink);
       font-size: 1rem;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.42;
       background: var(--surface-soft);
       border: 1px solid var(--line);
@@ -897,7 +899,7 @@
       border-radius: 999px;
     }
     .steps.alt .step-no { background: var(--accent); }
-    .steps b { display: inline; color: var(--ink); font-size: 1rem; font-weight: 650; line-height: 1.52; }
+    .steps b { display: inline; color: var(--ink); font-size: 1rem; font-weight: 600; line-height: 1.52; }
     .steps p { margin: 6px 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.55; }
     .guide-shot {
       margin: 12px 0 0;
@@ -932,7 +934,7 @@
       margin: 28px 0 12px;
       color: var(--ink);
       font-size: 1rem;
-      font-weight: 650;
+      font-weight: 600;
       line-height: 1.42;
       letter-spacing: 0;
     }
@@ -972,7 +974,7 @@
       margin: 0 0 24px;
       color: var(--ink);
       font-size: 1.625rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.35;
       text-align: center;
     }
@@ -981,7 +983,7 @@
       justify-content: center;
       margin-bottom: 24px;
       font-size: 1.625rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.35;
       text-align: center;
     }
@@ -1051,7 +1053,7 @@
       margin: 10px 0 4px;
       color: #38383b;
       font-size: 1.375rem;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.38;
     }
     .walkthrough-step h3 strong { color: #2468df; }
@@ -1339,7 +1341,7 @@
       margin: 0 0 22px;
       color: #20232b;
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.35;
       word-break: keep-all;
       overflow-wrap: normal;
@@ -1373,7 +1375,7 @@
       padding: 13px 15px;
       color: #ffffff;
       font-size: 1rem;
-      font-weight: 900;
+      font-weight: 700;
       background: var(--primary);
       border-color: var(--primary);
       border-radius: var(--radius);
@@ -1395,7 +1397,7 @@
       margin: 0 0 8px;
       color: #ed2f70;
       font-size: 1.375rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.4;
     }
     .portal-kakao-logo {
@@ -1410,7 +1412,7 @@
     }
     .portal-kakao-emphasis {
       color: #ed2f70;
-      font-weight: 800;
+      font-weight: 700;
     }
     @media (max-width: 559px) {
       #sec-minwon .portal-launch-banner {
