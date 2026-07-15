@@ -493,6 +493,61 @@
       height: 22px;
       filter: brightness(0) invert(1);
     }
+    .copy-feedback-button {
+      overflow: hidden;
+    }
+    .copy-feedback-glyph,
+    .copy-feedback-label {
+      display: grid;
+      place-items: center;
+    }
+    .copy-feedback-glyph {
+      flex: 0 0 22px;
+      width: 22px;
+      height: 22px;
+    }
+    .copy-feedback-glyph > *,
+    .copy-feedback-label > * {
+      grid-area: 1 / 1;
+    }
+    .copy-feedback-copy,
+    .copy-feedback-check,
+    .copy-feedback-default,
+    .copy-feedback-success {
+      transition: opacity 180ms ease, transform 220ms ease;
+    }
+    .copy-feedback-check {
+      width: 22px;
+      height: 22px;
+      opacity: 0;
+      background: #49d17d;
+      transform: scale(.35);
+      -webkit-mask: url("assets/check-icon.svg?v=202607150901") center / contain no-repeat;
+      mask: url("assets/check-icon.svg?v=202607150901") center / contain no-repeat;
+    }
+    .copy-feedback-success {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    .copy-feedback-button.is-copied .copy-feedback-copy,
+    .copy-feedback-button.is-copied .copy-feedback-default {
+      opacity: 0;
+      transform: scale(.8);
+    }
+    .copy-feedback-button.is-copied .copy-feedback-check {
+      animation: copy-check-spring 480ms both;
+    }
+    .copy-feedback-button.is-copied .copy-feedback-success {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes copy-check-spring {
+      0% { opacity: 0; transform: scale(.35); }
+      42% { opacity: 1; transform: scale(1.22); }
+      68% { opacity: 1; transform: scale(.9); }
+      84% { opacity: 1; transform: scale(1.06); }
+      100% { opacity: 1; transform: scale(1); }
+    }
     button,
     .link-button {
       display: inline-flex;
@@ -1550,7 +1605,7 @@
         <div class="result-label"><label for="titleOutput">제목</label></div>
         <textarea id="titleOutput" class="result-box" readonly></textarea>
         <div class="result-action">
-          <button type="button" id="copyTitle"><img class="copy-icon" src="assets/copy-outline.svg" alt="" aria-hidden="true">제목 복사</button>
+          <button type="button" id="copyTitle" class="copy-feedback-button" aria-label="제목 복사"><span class="copy-feedback-glyph" aria-hidden="true"><img class="copy-icon copy-feedback-copy" src="assets/copy-outline.svg" alt=""><span class="copy-feedback-check"></span></span><span class="copy-feedback-label" aria-hidden="true"><span class="copy-feedback-default">제목 복사</span><span class="copy-feedback-success">복사 완료</span></span></button>
         </div>
         <p id="titleStatus" class="copy-status" role="status" aria-live="polite"></p>
 
@@ -1562,7 +1617,7 @@
           <button type="button" id="toggleBody" class="body-toggle" aria-expanded="false">더보기</button>
         </div>
         <div class="result-action">
-          <button type="button" id="copyBody"><img class="copy-icon" src="assets/copy-outline.svg" alt="" aria-hidden="true">본문 복사</button>
+          <button type="button" id="copyBody" class="copy-feedback-button" aria-label="본문 복사"><span class="copy-feedback-glyph" aria-hidden="true"><img class="copy-icon copy-feedback-copy" src="assets/copy-outline.svg" alt=""><span class="copy-feedback-check"></span></span><span class="copy-feedback-label" aria-hidden="true"><span class="copy-feedback-default">본문 복사</span><span class="copy-feedback-success">복사 완료</span></span></button>
         </div>
         <p id="bodyStatus" class="copy-status" role="status" aria-live="polite"></p>
 
@@ -2357,10 +2412,25 @@ ${n + 1}. ${purpose.request}
     bodyOutput.value = makeBodyText();
     renderSms();
   }
-  async function copyText(text, fallbackEl, label, targetStatusEl) {
+  function showCopyFeedback(button) {
+    if (!button) return;
+    const defaultLabel = button.dataset.defaultLabel || button.getAttribute("aria-label") || "복사";
+    button.dataset.defaultLabel = defaultLabel;
+    clearTimeout(button._copyFeedbackTimer);
+    button.classList.remove("is-copied");
+    void button.offsetWidth;
+    button.classList.add("is-copied");
+    button.setAttribute("aria-label", "복사 완료");
+    button._copyFeedbackTimer = setTimeout(() => {
+      button.classList.remove("is-copied");
+      button.setAttribute("aria-label", defaultLabel);
+    }, 1400);
+  }
+  async function copyText(text, fallbackEl, label, targetStatusEl, feedbackButton) {
     if (!text.trim()) { ensureGenerated(); text = fallbackEl.value; }
     try {
       await navigator.clipboard.writeText(text);
+      showCopyFeedback(feedbackButton);
       setCopyStatus(targetStatusEl, `${label}이 복사되었습니다.`);
     } catch (e) {
       fallbackEl.focus(); fallbackEl.select();
@@ -2375,10 +2445,10 @@ ${n + 1}. ${purpose.request}
   document.querySelectorAll(".sms-tone-option").forEach((btn) => {
     btn.addEventListener("click", () => setSmsTone(btn.dataset.tone));
   });
-  $("copyTitle").addEventListener("click", () => copyText(titleOutput.value, titleOutput, "제목", titleStatusEl));
-  $("copyBody").addEventListener("click", () => {
+  $("copyTitle").addEventListener("click", (event) => copyText(titleOutput.value, titleOutput, "제목", titleStatusEl, event.currentTarget));
+  $("copyBody").addEventListener("click", (event) => {
     bodyOutput.value = makeBodyText();
-    copyText(bodyOutput.value, bodyOutput, "본문", bodyStatusEl);
+    copyText(bodyOutput.value, bodyOutput, "본문", bodyStatusEl, event.currentTarget);
   });
   // 카카오톡 인앱 브라우저로 접속한 경우, 국민신문고 링크를 외부 브라우저로 강제 이동
   const isKakaoInApp = /KAKAOTALK/i.test(navigator.userAgent);
