@@ -1274,11 +1274,39 @@
     .walkthrough-device-guide .walkthrough-shot {
       margin-top: 14px;
     }
-    .guide-tab-button {
+    .guide-footer-actions {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      margin: 32px auto 0;
+    }
+    .guide-tab-button,
+    .guide-download-button {
       display: flex;
       width: fit-content;
       max-width: calc(100% - 32px);
-      margin: 32px auto 0;
+      margin: 0;
+    }
+    .guide-download-button {
+      color: var(--primary);
+      background: #ffffff;
+      border-color: var(--primary);
+    }
+    .guide-download-icon {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      background: currentColor;
+      -webkit-mask: url("assets/download2-outline.svg?v=202607220925") center / contain no-repeat;
+      mask: url("assets/download2-outline.svg?v=202607220925") center / contain no-repeat;
+    }
+    .guide-download-status {
+      min-height: 0;
+      margin: 10px 16px 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      text-align: center;
     }
     #minwonDraftTitle { scroll-margin-top: 140px; }
 
@@ -1514,7 +1542,14 @@
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">2</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
             <h3><strong>비회원 로그인</strong>을 해주세요</h3>
             <p>휴대폰 본인인증으로 간편하게 본인인증하세요.</p>
-            <img class="walkthrough-shot" src="assets/guide-step-2.png?v=202607141524" alt="비회원 로그인 선택 화면" loading="lazy">
+            <section class="walkthrough-subguide" aria-label="비회원 로그인 선택">
+              <p class="walkthrough-subguide-copy">1. 비회원 로그인 선택</p>
+              <img class="walkthrough-shot" src="assets/guide-step-2.png?v=202607220912" alt="국민신문고 로그인 화면에서 비회원 로그인 선택" loading="lazy">
+            </section>
+            <section class="walkthrough-subguide" aria-label="휴대전화 본인인증 진행">
+              <p class="walkthrough-subguide-copy">2. 휴대전화 선택 후 본인인증 진행</p>
+              <img class="walkthrough-shot" src="assets/guide-step-2-2.png?v=202607220912" alt="비회원 로그인 본인인증 화면에서 휴대전화 선택" loading="lazy">
+            </section>
           </li>
           <li class="walkthrough-step">
             <div class="walkthrough-step-head"><span class="walkthrough-step-no">3</span><img class="walkthrough-logo" src="assets/gukmin_logo.svg" alt="국민신문고"></div>
@@ -1573,9 +1608,13 @@
           </li>
         </ol>
 
-        <button id="guideMinwonTabButton" type="button" class="link-button guide-tab-button" aria-label="국민신문고 민원작성 탭으로 이동"><span class="portal-link-text">국민신문고 민원내용 작성하기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="guide-footer-actions">
+          <a id="guideDownloadButton" class="link-button guide-download-button" href="assets/guide_full.png?v=202607220924" download="guide_full.png" target="_blank" rel="noopener" aria-describedby="guideDownloadStatus"><span class="guide-download-icon" aria-hidden="true"></span><span>사용방법안내 사진첩에 저장하기</span></a>
+          <button id="guideMinwonTabButton" type="button" class="link-button guide-tab-button" aria-label="국민신문고 민원작성 탭으로 이동"><span class="portal-link-text">국민신문고 민원내용 작성하기</span><svg class="uploaded-icon icon-arrow portal-link-arrow" aria-hidden="true" focusable="false" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.125 11.25V4.875H6.75002M12.8035 5.19645L4.87502 13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></button>
+        </div>
+        <p id="guideDownloadStatus" class="guide-download-status" role="status" aria-live="polite"></p>
       </section>
     </section>
 
@@ -2054,6 +2093,7 @@
   const smsCount1 = $("smsCount1"), smsCount2 = $("smsCount2");
   const rcptGroups = $("rcptGroups"), smsToneName = $("smsToneName"), smsSend1 = $("smsSend1"), smsSend2 = $("smsSend2");
   const portalLink = $("portalLink"), portalDesc = $("portalDesc"), portalTitle = $("portalTitle");
+  const guideDownloadButton = $("guideDownloadButton"), guideDownloadStatus = $("guideDownloadStatus");
 
   // 하위 탭 전환 (국민신문고 접수 / 항의문자 발송 / 처음이신가요) — 화면 전체가 바뀜
   document.querySelectorAll(".subtab").forEach((sub) => {
@@ -2082,6 +2122,80 @@
     requestAnimationFrame(() => {
       $("minwonDraftTitle").scrollIntoView({ behavior: "smooth", block: "start" });
     });
+  });
+
+  function setGuideDownloadStatus(message, duration = 5000) {
+    if (!guideDownloadStatus) return;
+    guideDownloadStatus.textContent = message;
+    clearTimeout(guideDownloadStatus._clearTimer);
+    if (message && duration) {
+      guideDownloadStatus._clearTimer = setTimeout(() => {
+        guideDownloadStatus.textContent = "";
+      }, duration);
+    }
+  }
+
+  function isIOSDevice() {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent)
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  }
+
+  function canShareGuideFile(file) {
+    try {
+      return typeof navigator.share === "function"
+        && typeof navigator.canShare === "function"
+        && navigator.canShare({ files: [file] });
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function openGuideImageFallback(url) {
+    const opened = window.open(url, "_blank");
+    if (opened) opened.opener = null;
+    else window.location.href = url;
+  }
+
+  guideDownloadButton.addEventListener("click", async (event) => {
+    const guideUrl = guideDownloadButton.href;
+    const fileName = guideDownloadButton.download || "guide_full.png";
+
+    // Android와 일반 브라우저는 download 속성의 기본 다운로드를 사용한다.
+    if (!isIOSDevice() || typeof File !== "function") {
+      setGuideDownloadStatus("사용방법안내 이미지 다운로드를 시작했습니다.");
+      return;
+    }
+
+    const shareProbe = new File([""], fileName, { type: "image/png" });
+    if (!canShareGuideFile(shareProbe)) {
+      setGuideDownloadStatus("이미지가 열리면 길게 눌러 사진 앱에 저장해주세요.", 7000);
+      return;
+    }
+
+    event.preventDefault();
+    setGuideDownloadStatus("사진첩 저장 메뉴를 준비하고 있습니다.", 0);
+
+    try {
+      const response = await fetch(guideUrl, { cache: "force-cache" });
+      if (!response.ok) throw new Error(`Guide image request failed: ${response.status}`);
+      const blob = await response.blob();
+      const guideFile = new File([blob], fileName, { type: blob.type || "image/png" });
+      if (!canShareGuideFile(guideFile)) throw new Error("Guide image sharing is unavailable");
+
+      setGuideDownloadStatus("공유 메뉴에서 ‘이미지 저장’을 선택해주세요.", 0);
+      await navigator.share({
+        files: [guideFile],
+        title: "국민신문고 민원신청 사용방법안내"
+      });
+      setGuideDownloadStatus("이미지 저장 또는 공유 작업이 완료되었습니다.", 3200);
+    } catch (error) {
+      if (error && error.name === "AbortError") {
+        setGuideDownloadStatus("");
+        return;
+      }
+      setGuideDownloadStatus("이미지가 새 창에서 열립니다. 길게 눌러 사진 앱에 저장해주세요.", 7000);
+      openGuideImageFallback(guideUrl);
+    }
   });
 
   let smsToneIndex = SMS_TONES.findIndex((tone) => tone.name === "검증 요청형");
